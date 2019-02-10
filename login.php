@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login for Video Hut</title>
+	<title>Login for Corp Travel</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 <!--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
 </head>
@@ -27,9 +27,9 @@
 		<div class="input-group">
 			<button type="submit" class="btn" name="login_user">Login</button>
 		</div>
-		<p>
+		<!-- <p>
 			Not yet a member? <a href="register.php">Sign up</a>
-		</p>
+		</p> -->
 	</form>
 
 
