@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="css/hotel2.css" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <div class="navbar-fixed">
+      <nav class="teal">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Corp Travel</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#popular">Popular Places</a>
+              </li>
+              <li>
+                <a href="#gallery">Gallery</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
+              <li>
+                <a href="login.php">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-nav">
+      <li>
+        <a href="#home">Home</a>
+      </li>
+      <li>
+        <a href="#popular">Popular Places</a>
+      </li>
+      <li>
+        <a href="#gallery">Gallery</a>
+      </li>
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+      <li>
+        <a href="login.php">Login</a>
+      </li>
+    </ul>
+
+    <!-- Showcase Container -->
+    <div class="showcase container">
+      <div class="row">
+        <div class="col s12 m10 offset-m1 center">
+          <h5>Welcome To Quazzu</h5>
+          <h1>Build For The Future</h1>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit fugit
+            deserunt quos provident aliquam inventore.
+          </p>
+          <br />
+          <br />
+          <a href="solutions.html" class="btn btn-large white purple-text"
+            >Learn More</a
+          >
+          <a href="signup.html" class="btn btn-large purple white-text"
+            >Sign Up</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      // Side Nav
+      const sideNav = document.querySelector('.sidenav');
+      M.Sidenav.init(sideNav, {});
+
+      //Slider
+      const slider = document.querySelector('.slider');
+      M.Slider.init(slider, {
+        indicators: false,
+        height: 500,
+        transition: 500,
+        interval: 6000
+      });
+
+      // Autocomplete
+      const ac = document.querySelector('.autocomplete');
+      M.Autocomplete.init(ac, {
+        data: {
+          Aruba: null,
+          'Cancun Mexico': null,
+          Hawaii: null,
+          Florida: null,
+          California: null,
+          Jamaica: null,
+          Europe: null
+        }
+      });
+
+      //Material Boxed
+      const mb = document.querySelectorAll('.materialboxed');
+      M.Materialbox.init(mb, {});
+
+      //ScrollSpy
+      const ss = document.querySelectorAll('.scrollspy');
+      M.ScrollSpy.init(ss, {});
+    </script>
+  </body>
+</html>
