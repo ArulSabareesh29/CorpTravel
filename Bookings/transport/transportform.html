@@ -88,9 +88,50 @@
           </div>
         </form>
       </div>
-      <h4>Details</h4>
+      <h4>Passenger Details</h4>
       <hr />
-      <form action=""></form>
+      <form action="">
+        <div class="row">
+          <div class="input-field col s6 m6">
+            <input
+              placeholder="John"
+              id="employee_name"
+              type="text"
+              class="validate"
+            />
+            <label for="employee_name">Employee Name</label>
+          </div>
+          <div class="input-field col s6 m6">
+            <input
+              placeholder="Contact Details"
+              id="contact_no"
+              type="text"
+              class="validate"
+            />
+            <label for="contact_no">Contact No</label>
+          </div>
+          <div class="input-field col s12 m4">
+            <select>
+              <option value="" disabled selected>Choose your Approver</option>
+              <option value="1">John Doe</option>
+              <option value="2">Michael Marsh</option>
+              <option value="3">Rick Grimes</option>
+            </select>
+            <label>Line Manager</label>
+          </div>
+          <div class="input-field col s12 m4 offset-m2">
+            <select>
+              <option value="" disabled selected
+                >Choose your Alternate Approver</option
+              >
+              <option value="1">John Doe</option>
+              <option value="2">Michael Marsh</option>
+              <option value="3">Rick Grimes</option>
+            </select>
+            <label>Alternate Line Manager</label>
+          </div>
+        </div>
+      </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -100,6 +141,10 @@
       $('.datepicker').datepicker({
         disableWeekends: true,
         yearRange: 1
+      });
+
+      $(document).ready(function() {
+        $('select').formSelect();
       });
     </script>
   </body>
