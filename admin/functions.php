@@ -1,29 +1,29 @@
-<?php 
-	session_start();
+<?php
+session_start();
 
-	// connect to database
-	$db = mysqli_connect('localhost', 'root', '', 'moviehub');
+// connect to database
+$db = mysqli_connect('localhost', 'root', '', 'corpTravel');
 
-	// variable declaration
-	$username = "";
-	$email    = "";
-	$errors   = array(); 
+// variable declaration
+$username = "";
+$email = "";
+$errors = array();
 
-	// call the register() function if register_btn is clicked
-	if (isset($_POST['register_btn'])) {
-		register();
-	}
+// call the register() function if register_btn is clicked
+if (isset($_POST['register_btn'])) {
+    register();
+}
 
-	// call the login() function if register_btn is clicked
-	if (isset($_POST['login_user'])) {
-		login();
-	}
+// call the login() function if register_btn is clicked
+if (isset($_POST['login_user'])) {
+    login();
+}
 
-	if (isset($_GET['logout'])) {
-		session_destroy();
-		unset($_SESSION['user']);
-		header("location: ../login.php");
-	}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: ../login.php");
+}
 
 // TO REGISTER USER
 if (isset($_POST['reg_user'])) {
@@ -59,97 +59,96 @@ if (isset($_POST['reg_user'])) {
 
 }
 
-	// return user array from their id
-	function getUserById($id){
-		global $db;
-		$query = "SELECT * FROM user WHERE id=" . $id;
-		$result = mysqli_query($db, $query);
+// return user array from their id
+function getUserById($id)
+{
+    global $db;
+    $query = "SELECT * FROM user WHERE id=" . $id;
+    $result = mysqli_query($db, $query);
 
-		$user = mysqli_fetch_assoc($result);
-		return $user;
-	}
+    $user = mysqli_fetch_assoc($result);
+    return $user;
+}
 
-	// LOGIN USER
-	function login(){
-		global $db, $username, $errors;
+// LOGIN USER
+function login()
+{
+    global $db, $username, $errors;
 
-		// Get the values
-		$username = e($_POST['username']);
-		$password = e($_POST['password']);
+    // Get the values
+    $username = e($_POST['username']);
+    $password = e($_POST['password']);
 
-		//Make sure form is filled properly to check Validation
-		if (empty($username)) {
-			array_push($errors, "Username is required");
-		}
-		if (empty($password)) {
-			array_push($errors, "Password is required");
-		}
+    //Make sure form is filled properly to check Validation
+    if (empty($username)) {
+        array_push($errors, "Username is required");
+    }
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+    }
 
-		// Login if no errors on form
-		if (count($errors) == 0) {
+    // Login if no errors on form
+    if (count($errors) == 0) {
 
-			$query = "SELECT * FROM user WHERE username='$username' AND password='$password' LIMIT 1";
-			$results = mysqli_query($db, $query);
+        $query = "SELECT * FROM user WHERE username='$username' AND password='$password' LIMIT 1";
+        $results = mysqli_query($db, $query);
 
-			if (mysqli_num_rows($results) == 1) { // user found
-				// check if user is admin or user
-				$logged_in_user = mysqli_fetch_assoc($results);
-				if ($logged_in_user['user_type'] == 'admin') {
+        if (mysqli_num_rows($results) == 1) { // user found
+            // check if user is admin or user
+            $logged_in_user = mysqli_fetch_assoc($results);
+            if ($logged_in_user['user_type'] == 'admin') {
 
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: admin/home.php');
-                    
-				}elseif($logged_in_user['user_type'] == 'user'){
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success'] = "You are now logged in";
+                header('location: admin/home.php');
 
-					header('location: genre.php');
-				}
+            } elseif ($logged_in_user['user_type'] == 'user') {
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success'] = "You are now logged in";
 
-			}else {
-				array_push($errors, "Wrong username/password ");
-			}
-		}
-	}
+                header('location:bookings/hotel/hotel.html ');
+            }
 
-	function isLoggedIn()
-	{
-		if (isset($_SESSION['user'])) {
-			return true;
-		}else{
-			return false;
-		}
-	}
+        } else {
+            array_push($errors, "Wrong username/password ");
+        }
+    }
+}
 
-	function isAdmin()
-	{
-		if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'admin' ) {
-			return true;
-		}else{
-			return false;
-		}
-	}
+function isLoggedIn()
+{
+    if (isset($_SESSION['user'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-	// escape string
-	function e($val){
-		global $db;
-		return mysqli_real_escape_string($db, trim($val));
-	}
+function isAdmin()
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'admin') {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-	function display_error() {
-		global $errors;
+// escape string
+function e($val)
+{
+    global $db;
+    return mysqli_real_escape_string($db, trim($val));
+}
 
-		if (count($errors) > 0){
-			echo '<div class="error">';
-				foreach ($errors as $error){
-					echo $error .'<br>';
-				}
-			echo '</div>';
-		}
-	}
+function display_error()
+{
+    global $errors;
 
-
-?>
-
-
+    if (count($errors) > 0) {
+        echo '<div class="error">';
+        foreach ($errors as $error) {
+            echo $error . '<br>';
+        }
+        echo '</div>';
+    }
+}

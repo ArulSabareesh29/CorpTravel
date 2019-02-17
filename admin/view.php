@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="shortcut icon" href="../images/title.png">
-        <title>Video Hut</title>
+        <title>Corp Travel</title>
         <style>
             #user_table {
                 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -38,9 +38,10 @@
                 font-size: 16px;
                 margin: 4px 2px;
                 cursor: pointer;}
-        </style>    
+        </style>
     </head>
     <body>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
         <br>
         <br>
         <br>
@@ -57,10 +58,10 @@
                 </thead>
                 <tbody>
                     <?php
-                    include('db-config.php');
-                    $query=mysqli_query($conn,"select * from `user`");
-                    while($row=mysqli_fetch_array($query)){
-                    ?>
+include 'db-config.php';
+$query = mysqli_query($conn, "select * from `user`");
+while ($row = mysqli_fetch_array($query)) {
+    ?>
                     <tr>
                         <td><?php echo $row['id']; ?></td>
                         <td><?php echo $row['username']; ?></td>
@@ -71,12 +72,35 @@
                         </td>
                     </tr>
                     <?php
-                    }
-                    ?>
+}
+?>
                 </tbody>
             </table>
             <br>
             <a href="home.php"><button class="button" type="button">CLOSE</button></a>
         </div>
+        <script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("user_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
     </body>
 </html>

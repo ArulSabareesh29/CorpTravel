@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include 'functions.php';
 
 if (!isAdmin()) {
     $_SESSION['msg'] = "You must log in first";
@@ -69,18 +69,18 @@ if (!isAdmin()) {
 </div>
 <div class="content">
     <!-- notification message -->
-    <?php if (isset($_SESSION['success'])) : ?>
+    <?php if (isset($_SESSION['success'])): ?>
         <div class="error success" >
             <h3>
                 <?php
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
-                ?>
+echo $_SESSION['success'];
+unset($_SESSION['success']);
+?>
             </h3>
         </div>
-    <?php endif ?>
+    <?php endif?>
 
-    <?php  if (isset($_SESSION['user'])) : ?>
+    <?php if (isset($_SESSION['user'])): ?>
         <strong><?php echo $_SESSION['user']['username']; ?></strong>
 
         <small>
@@ -90,7 +90,7 @@ if (!isAdmin()) {
             <button><a href="home.php?logout='1'" style="color: red;">logout</a></button>
         </small>
 
-    <?php endif ?>
+    <?php endif?>
     <!-- logged in user information -->
     <div class="profile_info">
 <!--        <img src="../images/admin_profile.png"  >-->
@@ -100,35 +100,35 @@ if (!isAdmin()) {
         </div>
     </div>
 </div>
-<center><h2><U>FOLLOWING USERS WHO HAVE ACCESSED THE SYSTEM</U></h2></center>
+<center><h2><U>Following Users Have Booked in the System</U></h2></center>
 <table id="user_table" border="1">
     <thead>
-    <th><center>Product ID</center></th>
-    <th><center>Full Name</center></th>
-    <th><center>Copies</center></th>
-    <th><center>Description</center></th>
-    <th><center>Price</center></th>
-    <th><center>Borrowed Date</center></th>
-    <th><center>Returned Date</center></th>
+    <th><center>Booking ID</center></th>
+    <th><center>Booking Type</center></th>
+    <th><center>Booking Code</center></th>
+    <th><center>Status</center></th>
+    <th><center>Timestamp</center></th>
+    <th><center>Date and Time</center></th>
+    <!-- <th><center></center></th> -->
     </thead>
     <tbody>
     <?php
-    include('db-config.php');
-    $query=mysqli_query($conn,"select * from `products`");
-    while($row=mysqli_fetch_array($query)){
-        ?>
+include 'db-config.php';
+$query = mysqli_query($conn, "select * from `booking`");
+while ($row = mysqli_fetch_array($query)) {
+    ?>
         <tr>
-            <td><center><?php echo $row['productID']; ?></center></td>
-            <td><center><?php echo $row['name']; ?></center></td>
-            <td><center><?php echo $row['Copies']; ?></center></td>
-            <td><center><strong><?php echo $row['description']; ?></strong></center></td>
-            <td><center><?php echo $row['price']; ?></center></td>
-            <td><center><?php echo $row['Borrowed Date']; ?></center></td>
-            <td><center><?php echo $row['Returned Date']; ?></center></td>
+            <td><center><?php echo $row['booking_id']; ?></center></td>
+            <td><center><?php echo $row['booking_type']; ?></center></td>
+            <td><center><?php echo $row['booking_code']; ?></center></td>
+            <td><center><strong><?php echo $row['status']; ?></strong></center></td>
+            <td><center><?php echo $row['timestamp']; ?></center></td>
+            <td><center><?php echo $row['date and time']; ?></center></td>
+            <!-- <td><center><?php echo $row['Returned Date']; ?></center></td> -->
         </tr>
         <?php
-    }
-    ?>
+}
+?>
     </tbody>
 </table>
 

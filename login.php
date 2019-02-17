@@ -6,6 +6,7 @@
 	<title>Login for Corp Travel</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 <!--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 	<div class="header">
