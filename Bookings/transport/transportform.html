@@ -25,74 +25,12 @@
     <!-- Transport Form -->
     <div class="container">
       <h4 class="center">Transport Form</h4>
-      <div class="row">
-        <form class="col s12 m6 offset-m3">
-          <div class="row">
-            <div class="input-field col s6">
-              <input
-                placeholder="John"
-                id="first_name"
-                type="text"
-                class="validate"
-              />
-              <label for="first_name">First Name</label>
-            </div>
-            <div class="input-field col s6">
-              <input
-                placeholder="Doe"
-                id="last_name"
-                type="text"
-                class="validate"
-                <input
-                id="last_name"
-                type="text"
-                class="validate"
-              />
-              <label for="last_name">Last Name</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input
-                placeholder="Placeholder"
-                id="first_name"
-                type="text"
-                class="validate"
-                <input
-                id="password"
-                type="password"
-                class="validate"
-              />
-              <label for="password">Password</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input
-                placeholder="Placeholder"
-                id="email"
-                type="email"
-                class="validate"
-                <input
-                id="email"
-                type="email"
-                class="validate"
-              />
-              <label for="email">Email</label>
-            </div>
-          </div>
-          <div class="input-field">
-            <i class="material-icons prefix">date_range</i>
-            <input type="text" id="date" class="datepicker" />
-            <label for="date">Choose a date you need me for...</label>
-          </div>
-        </form>
-      </div>
-      <h4>Passenger Details</h4>
-      <hr />
       <form action="">
-        <div class="row">
+        <h4>Passenger Details</h4>
+        <hr />
+        <div class="row addUser">
           <div class="input-field col s6 m6">
+            <i class="material-icons prefix">mail</i>
             <input
               placeholder="John"
               id="employee_name"
@@ -102,6 +40,9 @@
             <label for="employee_name">Employee Name</label>
           </div>
           <div class="input-field col s6 m6">
+            <a href="#" class="btn-floating blue pulse prefix add_button">
+              <i class="material-icons">add</i>
+            </a>
             <input
               placeholder="Contact Details"
               id="contact_no"
@@ -110,7 +51,9 @@
             />
             <label for="contact_no">Contact No</label>
           </div>
-          <div class="input-field col s12 m4">
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m6">
             <select>
               <option value="" disabled selected>Choose your Approver</option>
               <option value="1">John Doe</option>
@@ -119,11 +62,11 @@
             </select>
             <label>Line Manager</label>
           </div>
-          <div class="input-field col s12 m4 offset-m2">
+          <div class="input-field col s12 m6">
             <select>
               <option value="" disabled selected
-                >Choose your Alternate Approver</option
-              >
+                >Choose your Alternate Approver
+              </option>
               <option value="1">John Doe</option>
               <option value="2">Michael Marsh</option>
               <option value="3">Rick Grimes</option>
@@ -131,9 +74,99 @@
             <label>Alternate Line Manager</label>
           </div>
         </div>
+        <h4>Requestor Details</h4>
+        <hr />
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="John"
+              id="first_name"
+              type="text"
+              class="validate"
+            />
+            <label for="first_name">First Name</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Doe"
+              id="last_name"
+              type="text"
+              class="validate"
+            />
+            <label for="last_name">Last Name</label>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <input
+                placeholder="JohnDoe@example.com"
+                id="email"
+                type="email"
+                class="validate"
+              />
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <i class="material-icons prefix">phone</i>
+              <input
+                type="number"
+                id="number"
+                placeholder="Enter Phone No..."
+                class="validate"
+              />
+              <label for="number">Contact Number</label>
+            </div>
+          </div>
+          <h4>Additional Details</h4>
+          <hr />
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <select>
+                <option value="" disabled selected
+                  >Select your Department</option
+                >
+                <option value="1">John Doe</option>
+                <option value="2">Michael Marsh</option>
+                <option value="3">Rick Grimes</option>
+              </select>
+              <label>Department Name</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <select>
+                <option value="" disabled selected>Select your CRG</option>
+                <option value="1">250</option>
+                <option value="2">269</option>
+                <option value="3">200</option>
+              </select>
+              <label>Cost Center</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <input type="text" id="date" class="datepicker" />
+              <label for="employee_name">Journey Start</label>
+            </div>
+            <div class="input-field col s6 m6">
+              <input type="text" id="date" class="datepicker" />
+              <label for="employee_name">Journey End</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <input type="text" id="date" class="timepicker" />
+              <label for="employee_name">Journey Start Time</label>
+            </div>
+            <div class="input-field col s6 m6">
+              <input type="text" id="date" class="timepicker" />
+              <label for="employee_name">Journey End Time</label>
+            </div>
+            <div class="input-field col s12 m12">
+              <textarea
+                placeholder="Description"
+                id="textarea1"
+                class="materialize-textarea"
+              ></textarea>
+              <label for="textarea1">Travel Description</label>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -142,9 +175,40 @@
         disableWeekends: true,
         yearRange: 1
       });
+      $(document).ready(function() {
+        $('.timepicker').timepicker();
+      });
 
       $(document).ready(function() {
         $('select').formSelect();
+      });
+
+      //Add User Code
+      $(document).ready(function() {
+        var maxField = 10; //Input fields increment limitation
+        var addButton = $('.add_button'); //Add button selector
+        var wrapper = $('.addUser'); //Input field wrapper
+        var fieldHTML =
+          '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="btn-floating blue pulse prefix remove_button"><i class="material-icons">add</i'; //New input field html
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function() {
+          //Check maximum number of input fields
+          if (x < maxField) {
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+          }
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function(e) {
+          e.preventDefault();
+          $(this)
+            .parent('div')
+            .remove(); //Remove field html
+          x--; //Decrement field counter
+        });
       });
     </script>
   </body>

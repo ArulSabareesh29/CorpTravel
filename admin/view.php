@@ -41,7 +41,8 @@
         </style>
     </head>
     <body>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <input id="myInput" type="text" placeholder="Search..">
+    <br><br>
         <br>
         <br>
         <br>
@@ -56,7 +57,7 @@
                     <th>User Type</th>
                     <th></th>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                     <?php
 include 'db-config.php';
 $query = mysqli_query($conn, "select * from `user`");
@@ -79,28 +80,16 @@ while ($row = mysqli_fetch_array($query)) {
             <br>
             <a href="home.php"><button class="button" type="button">CLOSE</button></a>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("user_table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
+            $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
     </body>
 </html>
