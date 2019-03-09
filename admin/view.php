@@ -48,29 +48,29 @@
         <br>
         <br>
         <div>
-            <center><h2><U>ACTIVE USERS</U></h2></center>
+            <center><h2><U></U></h2></center>
             <table id="user_table" border="1">
                 <thead>
-                    <th>User id</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>User Type</th>
-                    <th></th>
+                    <th>Booking Id</th>
+                    <th>Passenger Name</th>
+                    <th>Contact No</th>
+                    <th>Line Manager</th>
+                    <th>Journey Start</th>
+                    <th>Journey End</th>
                 </thead>
                 <tbody id="myTable">
                     <?php
 include 'db-config.php';
-$query = mysqli_query($conn, "select * from `user`");
+$query = mysqli_query($conn, "select * from `trans_data`");
 while ($row = mysqli_fetch_array($query)) {
     ?>
                     <tr>
                         <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['username']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['user_type']; ?></td>
-                        <td>
-                            <a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
-                        </td>
+                        <td><?php echo $row['passenger_name']; ?></td>
+                        <td><?php echo $row['contact_no']; ?></td>
+                        <td><?php echo $row['line_mgr']; ?></td>
+                        <td><?php echo $row['journey_start']; ?></td>
+                        <td><?php echo $row['journey_end']; ?></td>
                     </tr>
                     <?php
 }

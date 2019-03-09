@@ -100,13 +100,13 @@ function login()
 
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "You are now logged in";
-                header('location: admin/home.php');
+                header('location: dashboard/index.html');
 
             } elseif ($logged_in_user['user_type'] == 'user') {
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "You are now logged in";
 
-                header('location:bookings/hotel/hotel.html ');
+                header('location:menu/menu.html ');
             }
 
         } else {

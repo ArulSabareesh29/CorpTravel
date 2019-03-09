@@ -1,5 +1,6 @@
 <?php
 include 'functions.php';
+include '../nav.php';
 
 if (!isAdmin()) {
     $_SESSION['msg'] = "You must log in first";
@@ -11,15 +12,30 @@ if (!isAdmin()) {
 <html>
 <head>
     <link rel="shortcut icon" href="../images/title.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!--Import Google Icon Font-->
+        <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
 
     <title>Admin Home</title>
     <style>
         .header {
-            background: #003366;
+            background: #0097a7;
         }
         button[name=register_btn] {
-            background: #003366;
+            background: #0097a7;
         }
 
 
@@ -42,12 +58,12 @@ if (!isAdmin()) {
             padding-top: 8px;
             padding-bottom: 20px;
             text-align: left;
-            background-color: #0033669c;
+            background-color: #00acc1;
             color: white;
         }
 
         /*Css code for apply buttons*/
-        .button {background-color: #f44336;
+        .button {background-color: ##00acc1;
             border: none;
             color: white;
             padding: 9px 15px;
@@ -64,9 +80,6 @@ if (!isAdmin()) {
     </style>
 </head>
 <body>
-<div class="header">
-    <h2>Admin - Home Page</h2>
-</div>
 <div class="content">
     <!-- notification message -->
     <?php if (isset($_SESSION['success'])): ?>
@@ -86,7 +99,7 @@ unset($_SESSION['success']);
         <small>
             <i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
             <br>
-            <button type=""><a href="view.php" target="_blank">Delete User</a></button>
+            <button type=""><a href="view.php" target="_blank">View Users</a></button>
             <button><a href="home.php?logout='1'" style="color: red;">logout</a></button>
         </small>
 
@@ -95,12 +108,10 @@ unset($_SESSION['success']);
     <div class="profile_info">
 <!--        <img src="../images/admin_profile.png"  >-->
 
-        <div>
 
-        </div>
     </div>
-</div>
-<center><h2><U>Following Users Have Booked in the System</U></h2></center>
+    <div class="container">
+<center><h4>Following Users Have Booked in the System</h4></center>
 <table id="user_table" border="1">
     <thead>
     <th><center>Booking ID</center></th>
@@ -108,10 +119,9 @@ unset($_SESSION['success']);
     <th><center>Booking Code</center></th>
     <th><center>Status</center></th>
     <th><center>Timestamp</center></th>
-    <th><center>Date and Time</center></th>
-    <!-- <th><center></center></th> -->
     </thead>
     <tbody>
+    </div>
     <?php
 include 'db-config.php';
 $query = mysqli_query($conn, "select * from `booking`");
@@ -123,8 +133,7 @@ while ($row = mysqli_fetch_array($query)) {
             <td><center><?php echo $row['booking_code']; ?></center></td>
             <td><center><strong><?php echo $row['status']; ?></strong></center></td>
             <td><center><?php echo $row['timestamp']; ?></center></td>
-            <td><center><?php echo $row['date and time']; ?></center></td>
-            <!-- <td><center><?php echo $row['Returned Date']; ?></center></td> -->
+
         </tr>
         <?php
 }
@@ -132,8 +141,6 @@ while ($row = mysqli_fetch_array($query)) {
     </tbody>
 </table>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

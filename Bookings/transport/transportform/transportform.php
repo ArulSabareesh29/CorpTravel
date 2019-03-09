@@ -176,7 +176,7 @@ if (isset($success_message)) {echo "<div>" . $success_message . "</div>";}
                                 <option value="" disabled selected
                                         >Select your Department</option
                                     >
-                                <option value="1">John Doe</option>
+                                <option value="John Doe">John Doe</option>
                                 <option value="2">Michael Marsh</option>
                                 <option value="3">Rick Grimes</option>
                             </select>

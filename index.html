@@ -41,9 +41,6 @@
                 <a href="#popular">Popular Places</a>
               </li>
               <li>
-                <a href="#gallery">Gallery</a>
-              </li>
-              <li>
                 <a href="#contact">Contact</a>
               </li>
               <li>
@@ -62,9 +59,6 @@
         <a href="#popular">Popular Places</a>
       </li>
       <li>
-        <a href="#gallery">Gallery</a>
-      </li>
-      <li>
         <a href="#contact">Contact</a>
       </li>
       <li>
@@ -81,7 +75,7 @@
           />
           <!-- random image -->
           <div class="caption center-align">
-            <h3>Take your Dream Vacation!</h3>
+            <h3>Book Your Travel!</h3>
             <h5 class="light grey-text text-lighten-3 hide-on-small-only">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
               fugit quis temporibus quisquam iusto quidem fugiat alias in nulla
@@ -132,7 +126,7 @@
                 type="text"
                 class="white grey-text autocomplete"
                 id="autocomplete-input"
-                placeholder="Aruba,Cancun, etc.."
+                placeholder="Search Destinations Here"
               />
             </div>
           </div>
@@ -378,7 +372,14 @@
             </ul>
           </div>
           <div class="col s12 m6">
-            <div class="card-panel grey lighten-3">
+            <iframe
+              allow="microphone;"
+              width="350"
+              height="430"
+              src="https://console.dialogflow.com/api-client/demo/embedded/c2cc24f2-95a6-4746-a1ad-aa0e724c2cb8"
+            >
+            </iframe>
+            <!-- <div class="card-panel grey lighten-3">
               <h5>Please Fill out this form</h5>
               <div class="input-field">
                 <input type="text" placeholder="Name" />
@@ -396,7 +397,7 @@
                 ></textarea>
               </div>
               <input type="submit" class="cyan darken-1 btn" />
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -427,13 +428,13 @@
       const ac = document.querySelector('.autocomplete');
       M.Autocomplete.init(ac, {
         data: {
-          Aruba: null,
+          India: null,
           'Cancun Mexico': null,
-          Hawaii: null,
-          Florida: null,
-          California: null,
-          Jamaica: null,
-          Europe: null
+          Bangalore: null,
+          'Nuwer Eliya': null,
+          Colombo: null,
+          Horana: null,
+          Agarapathana: null
         }
       });
 

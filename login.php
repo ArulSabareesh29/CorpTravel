@@ -1,4 +1,3 @@
-<!-- <?php include 'nav.php'?> -->
 <?php include 'admin/functions.php'?>
 <!DOCTYPE html>
 <html>
@@ -39,16 +38,7 @@
             </a>
             <ul class="right hide-on-med-and-down">
               <li>
-                <a href="#home">Home</a>
-              </li>
-              <li>
-                <a href="#popular">Popular Places</a>
-              </li>
-              <li>
-                <a href="#gallery">Gallery</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
+                <a href="index.html">Home</a>
               </li>
               <li>
                 <a href="login.php">Login</a>
@@ -79,7 +69,7 @@
 	<!-- Login Form -->
 <div class="container uForm">
 	<div class="row">
-		<div class="col s12 m5 offset-m3">
+		<div class="col s12 m6 l6 offset-l3">
 			<div class="card">
 				<div class="card-action cyan darken-1 white-text">
 					<h3 class="center">Login Form</h3>
@@ -104,9 +94,6 @@
 						<div class="input-group">
 						<button type="submit" class="btn-large waves-effect waves-dark cyan darken-1" style="width:100%;" name="login_user">Login</button>
 						</div>
-						<!-- <p>
-						Not yet a member? <a href="register.php">Sign up</a>
-						</p> -->
 					</form>
 				</div>
 			</div>
