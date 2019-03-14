@@ -104,9 +104,9 @@ if (isset($success_message)) {echo "<div>" . $success_message . "</div>";}
                     <div class="input-field col s12 m6">
                         <select id="line_mgr" name="line_mgr" required>
                             <option value="" disabled selected>Choose your Approver</option>
-                            <option value="1">John Doe</option>
-                            <option value="2">Michael Marsh</option>
-                            <option value="3">Rick Grimes</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="Michael Marsh">Michael Marsh</option>
+                            <option value="Rick Grimes">Rick Grimes</option>
                         </select>
                         <label>Line Manager</label>
                     </div>
@@ -249,7 +249,7 @@ if (isset($success_message)) {echo "<div>" . $success_message . "</div>";}
                 var addButton = $('.add_button'); //Add button selector
                 var wrapper = $('.addUser'); //Input field wrapper
                 var fieldHTML =
-                    '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="btn-floating blue pulse prefix remove_button"><i class="material-icons">add</i'; //New input field html
+                    '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="btn-floating blue pulse prefix remove_button"><i class="material-icons">add</i>'; //New input field html
                 var x = 1; //Initial field counter is 1
 
                 //Once add button is clicked

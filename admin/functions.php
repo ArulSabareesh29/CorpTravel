@@ -36,10 +36,16 @@ if (isset($_POST['reg_user'])) {
     $user_type = mysqli_real_escape_string($db, $_POST['user_type']);
 
     // form validation: ensure that the form is correctly filled
-    if (empty($username)) {array_push($errors, "Username is required");}
-    if (empty($email)) {array_push($errors, "Email is required");}
+    if (empty($username)) {
+        array_push($errors, "Username is required");
+    }
+    if (empty($email)) {
+        array_push($errors, "Email is required");
+    }
 //        if (empty($dob)) { array_push($errors, "Date of Birth is Required"); }
-    if (empty($password_1)) {array_push($errors, "Password is required");}
+    if (empty($password_1)) {
+        array_push($errors, "Password is required");
+    }
 
     if ($password_1 != $password_2) {
         array_push($errors, "The two passwords do not match");
@@ -106,7 +112,12 @@ function login()
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "You are now logged in";
 
-                header('location:menu/menu.html ');
+                header('location:menu/menu.php ');
+            } elseif ($logged_in_user['user_type'] == 'vendor') {
+                $_SESSION['vendor'] = $logged_in_user;
+                $_SESSION['success'] = "You are now logged in";
+
+                header('location:dashboard/index.html ');
             }
 
         } else {
