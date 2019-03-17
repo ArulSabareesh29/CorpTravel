@@ -57,8 +57,12 @@
 <body class="grey lighten-4">
 <div id="modal">
     <div class="modalconent">
-        <h4 class = "center">Welcome to Corp Travel </h4>
-        <button id="button" class="btn waves-effect waves-light">Close</button>
+        <div class="row">
+            <div class="col s12 m10 offset-m1 center">
+                <h4>Welcome to Corp Travel </h4>
+                <button id="button" class="btn waves-effect waves-light">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="navbar-fixed">
@@ -136,7 +140,7 @@
             <div class="square-container2">
                 <div class="align-center"></div>
                 <a
-                        href="../bookings/hotel/hotel.html"
+                        href="../bookings/hotel/hotel2.html"
                         target="_blank"
                         class="boxshadow kallyas-button"
                 >View Hotels</a
