@@ -62,26 +62,42 @@
     </center>
     <table id="user_table" border="1">
       <thead>
-        <th>Booking Id</th>
-        <th>Passenger Name</th>
-        <th>Contact No</th>
-        <th>Line Manager</th>
-        <th>Journey Start</th>
-        <th>Journey End</th>
+        <th>Id </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Contact Number</th>
+        <th>Approver</th>
+        <th>Requestor Name</th>
+        <th>Requestor Phone No.</th>
+        <th>Requestor Department</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>No. of Persons</th>
+        <th>No. of Rooms</th>
+        <th>Room Type</th>
+        <th>Travel Description</th>
       </thead>
       <tbody id="myTable">
         <?php
 include 'db-config.php';
-$query = mysqli_query($conn, "select * from `trans_transport`");
+$query = mysqli_query($conn, "select * from `trans_hotel`");
 while ($row = mysqli_fetch_array($query)) {
     ?>
         <tr>
           <td><?php echo $row['id']; ?></td>
-          <td><?php echo $row['passenger_name']; ?></td>
+          <td><?php echo $row['employee_name']; ?></td>
           <td><?php echo $row['contact_no']; ?></td>
           <td><?php echo $row['line_mgr']; ?></td>
-          <td><?php echo $row['journey_start']; ?></td>
-          <td><?php echo $row['journey_end']; ?></td>
+          <td><?php echo $row['req_first_name']; ?></td>
+          <td><?php echo $row['email']; ?></td>
+          <td><?php echo $row['req_contact_no']; ?></td>
+          <td><?php echo $row['dept_name']; ?></td>
+          <td><?php echo $row['check_in']; ?></td>
+          <td><?php echo $row['check_out']; ?></td>
+          <td><?php echo $row['no_people']; ?></td>
+          <td><?php echo $row['no_rooms']; ?></td>
+          <td><?php echo $row['room_type']; ?></td>
+          <td><?php echo $row['description']; ?></td>
         </tr>
         <?php
 }
