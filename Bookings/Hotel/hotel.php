@@ -1,6 +1,12 @@
 <?php
 include_once "../../admin/db-config.php";
 
+include '../../admin/functions.php';
+
+if (!isLoggedIn()) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +35,10 @@ include_once "../../admin/db-config.php";
             <i class="material-icons">menu</i>
           </a>
           <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+
+            </li>
             <li id="myaccount">
               <a href="viewhotel.php">View Bookings</a>
             </li>
@@ -40,7 +50,11 @@ include_once "../../admin/db-config.php";
       </div>
     </nav>
   </div>
+  <!-- Side Navigation: Mobile View -->
   <ul class="sidenav" id="mobile-nav">
+    <li>
+      <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+    </li>
     <li>
       <a href="#account">View Bookings</a>
     </li>

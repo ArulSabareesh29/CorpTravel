@@ -19,7 +19,7 @@ if (!isLoggedIn()) {
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="../css/materialize.min.css" />
   <link rel="stylesheet" href="css/menu.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
@@ -61,12 +61,13 @@ if (!isLoggedIn()) {
       </div>
     </div>
   </div>
+  <!-- Navbar -->
   <div class="navbar-fixed">
     <nav class="cyan darken-1">
       <div class="container">
         <div class="nav-wrapper">
           <a href="../index.php" class="brand-logo">Corp Travel</a>
-          <a href="../index.php" data-target="mobile-nav" class="sidenav-trigger">
+          <a href="#" data-target="mobile-nav" class="sidenav-trigger">
             <i class="material-icons">menu</i>
           </a>
           <ul class="right hide-on-med-and-down">
@@ -81,6 +82,18 @@ if (!isLoggedIn()) {
       </div>
     </nav>
   </div>
+  <!-- Side Navigation: Mobile View -->
+  <ul class="sidenav" id="mobile-nav">
+    <li>
+      <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+    </li>
+    <li>
+      <a href="#account">View Bookings</a>
+    </li>
+    <li>
+      <a href="../../index.html">Sign Out</a>
+    </li>
+  </ul>
 
   <!-- Card -->
   <div class="centerflipcards">
@@ -155,10 +168,11 @@ if (!isLoggedIn()) {
   <br />
   <br />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
   <script>
   // Side Nav
   const sideNav = document.querySelector('.sidenav');

@@ -254,6 +254,9 @@ include_once "../admin/db-config.php";
         </div>
 
         <hr />
+        <!-- Search Bar - Filter Table -->
+        <input class="form-control form-control-lg" id="myInput" type="text" placeholder="Search..">
+        <br>
         <table class="table table-striped table-bordered" style="width:100%">
           <thead>
             <tr>
@@ -280,7 +283,7 @@ include_once "../admin/db-config.php";
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id='myTable'>
             <?php
 
 $sql = "SELECT * FROM corp_hotels";
@@ -366,6 +369,16 @@ while ($row = mysqli_fetch_array($query)) {
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/jquery.metisMenu.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script>
+  $(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
 </body>
 
 </html>

@@ -37,6 +37,9 @@ if (!isLoggedIn()) {
             <li>
               <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
             </li>
+            <li id="myaccount">
+              <a href="#account">My Account</a>
+            </li>
             <li>
               <a href="../index.php">Logout</a>
             </li>
@@ -45,9 +48,6 @@ if (!isLoggedIn()) {
       </div>
     </nav>
   </div>
-
-
-
 
   <!-- Showcase -->
   <section class="showcase">

@@ -40,7 +40,6 @@ include_once "../admin/db-config.php";
         <ul class="nav" id="main-menu">
           <li class="text-center user-image-back">
             <img src="assets/img/find_user.jpg" class="img-responsive" />
-
           </li>
 
 
@@ -58,9 +57,11 @@ include_once "../admin/db-config.php";
             <h2>Bookings</h2>
           </div>
         </div>
-
         <hr />
-        <table class="table table-striped table-bordered" style="width:100%">
+        <!-- Search Bar - Filter Table -->
+        <input class="form-control" id="myInput" type="text" placeholder="Search.." aria-label="Search">
+        <br>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
           <thead>
             <tr>
               <th>
@@ -80,7 +81,7 @@ include_once "../admin/db-config.php";
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="myTable">
             <?php
 
 $sql = "SELECT * FROM booking";
@@ -112,6 +113,22 @@ echo '<tr>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/jquery.metisMenu.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script>
+  // Filter Table
+  // $(document).ready(function() {
+  //   $("#myInput").on("keyup", function() {
+  //     var value = $(this).val().toLowerCase();
+  //     $("#myTable tr").filter(function() {
+  //       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  //     });
+  //   });
+  // });
+
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+  </script>
 </body>
 
 </html>

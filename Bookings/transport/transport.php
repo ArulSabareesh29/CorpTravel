@@ -1,3 +1,12 @@
+<?php
+include '../../admin/functions.php';
+
+if (!isLoggedIn()) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,17 +24,6 @@
 </head>
 
 <body>
-  <!-- Header -->
-  <!-- <div class="row">
-<div class="col s2 m2 l6">Logo</div>
-<div class="col s2 m2 l6 push-l5">My Account|Log Out</div>
-</div>
-<hr> -->
-
-  <!--Navigation Bar  -->
-  <!-- Nav Bar -->
-  <!-- Page loader Nisal
-<div class="page-loader"></div> -->
 
   <div class="navbar-fixed">
     <nav class="cyan darken-1">
@@ -36,11 +34,15 @@
             <i class="material-icons">menu</i>
           </a>
           <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+
+            </li>
             <li id="myaccount">
               <a href="#account">My Account</a>
             </li>
             <li>
-              <a href="../../index.html">Sign Out</a>
+              <a href="../../index.php">Sign Out</a>
             </li>
           </ul>
         </div>
@@ -49,16 +51,10 @@
   </div>
   <ul class="sidenav" id="mobile-nav">
     <li>
-      <a href="#home">Home</a>
+      <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
     </li>
-    <li>
-      <a href="#popular">Popular Places</a>
-    </li>
-    <li>
-      <a href="#gallery">Gallery</a>
-    </li>
-    <li>
-      <a href="#contact">Contact</a>
+    <li id="myaccount">
+      <a href="#account">My Account</a>
     </li>
     <li>
       <a href="login.php">Login</a>
@@ -77,7 +73,7 @@
           Any Transport needs could be booked here
         </p> -->
       <br /><br />
-      <a href="transportform.php" class="btn btn-large light-blue white-text">Get Booking</a>
+      <a href="transportform.php" class="btn btn-large light-blue white-text">Book Now</a>
     </div>
   </div>
 
@@ -95,8 +91,7 @@
       <div class="col s12 l6 offset-l1">
         <h2 class="blue-text text-darken-4">Office</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          at lacus congue, suscipit elit nec, tincidunt orci.
+          Your daily office related transport such as factory visits, workshops and home transport can be booked here.
         </p>
       </div>
     </div>
@@ -109,8 +104,7 @@
       <div class="col s12 l6 offset-l1 pull-l5 right-align">
         <h2 class="blue-text text-darken-4">Airport</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          at lacus congue, suscipit elit nec, tincidunt orci.
+          Transport for office staff, project related parties from other companies can be booked here
         </p>
       </div>
     </div>
@@ -123,8 +117,7 @@
       <div class="col s12 l6 offset-l1">
         <h2 class="blue-text text-darken-4">Night Taxi</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          at lacus congue, suscipit elit nec, tincidunt.
+          Late night transport for employees to ensure a safe drive home
         </p>
       </div>
     </div>
@@ -197,18 +190,9 @@
   <!-- Chatbot -->
   <?php include '../../chat.php'?>
 
-
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <!-- Compiled and minified JavaScript -->
   <script src="../../js/materialize.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-  <!-- <script>
-  $(window).load(function)(){
-    setTimeout(function()){
-      $('.page-loader').fadeOut();
-    },1000);
-  }
-</script> -->
+
   <script>
   // Side Nav
   const sideNav = document.querySelector('.sidenav');

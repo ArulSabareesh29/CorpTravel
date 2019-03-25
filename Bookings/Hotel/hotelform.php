@@ -40,6 +40,12 @@ if (isset($_POST['submit_btn'])) {
     }
 }
 
+include '../../admin/functions.php';
+
+if (!isLoggedIn()) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +59,7 @@ if (isset($_POST['submit_btn'])) {
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <style>
-  .container {
+  #form1 {
     padding-top: 50px;
   }
   </style>
@@ -62,8 +68,53 @@ if (isset($_POST['submit_btn'])) {
 </head>
 
 <body>
-  <!-- Hotel Form -->
-  <div class="container">
+
+  <!-- Nav Bar -->
+  <div class="navbar-fixed">
+    <nav class="cyan darken-1">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Corp Travel</a>
+          <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="#popular">Popular Places</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+            <li>
+              <a href="login.php">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <ul class="sidenav" id="mobile-nav">
+    <li>
+      <a href="#home">Home</a>
+    </li>
+    <li>
+      <a href="#popular">Popular Places</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+    <li>
+      <a href="login.php">Login</a>
+    </li>
+  </ul>
+
+
+
+
+  <div id="form1" class="container">
     <div class="row">
       <div class="col s12">
         <div class="card">

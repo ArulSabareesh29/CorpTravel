@@ -130,9 +130,7 @@ if ($result_trans_hotel = mysqli_query($conn, $sql_3)) {
               <h3>Hotel Transport <br> <?php echo $rowcount_trans_hotel; ?></h3>
             </div>
           </div>
-
         </div>
-
       </div>
       <!-- /. PAGE INNER  -->
     </div>
