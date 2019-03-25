@@ -5,7 +5,7 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
@@ -257,10 +257,10 @@
     <p class="flow-text">Corp Travel 2019 &copy; Designed by Arul Sabareesh</p>
   </footer>
 
-  <?php include 'chat2.php'?>
+  <?php include 'chat.php'?>
 
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/materialize.min.js"></script>
   <script>
   // Side Nav
   const sideNav = document.querySelector('.sidenav');
