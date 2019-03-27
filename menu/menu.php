@@ -14,7 +14,7 @@ if (!isLoggedIn()) {
 
 <head>
   <meta charset="UTF-8" />
-  <title>Corp Travel</title>
+  <title>Corp Travel - Menu</title>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />

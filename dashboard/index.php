@@ -73,7 +73,7 @@ if ($result_trans_hotel = mysqli_query($conn, $sql_3)) {
           </li>
 
           <li>
-            <a href="hotels.php"><i class="fa fa-hotel"></i>Hotels</a>
+            <a href="hotels.php"><i class="fa fa-bed"></i>Hotels</a>
           </li>
 
           <li>
