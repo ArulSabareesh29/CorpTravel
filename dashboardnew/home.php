@@ -68,12 +68,14 @@ if (!isLoggedIn()) {
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-        <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i
+                    class="fa fa-users fa-fw"></i> Overview</a>
+        <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i
+                    class="fa fa-book-open fa-fw"></i> Bookings</a>
+        <a href="views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
+        <a href="traffic.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
+        <a href="geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
+        <a href="reports.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Reports</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
     </div>
@@ -97,7 +99,7 @@ if (!isLoggedIn()) {
             <div class="w3-container w3-red w3-padding-16">
                 <div class="w3-left"><i class="far fa-calendar-check w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3><?php echo date("Y-m-d-l"); ?></h3>
+                    <h3><?php echo date("Y-m-d"); ?></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Current Date</h4>
@@ -135,122 +137,72 @@ if (!isLoggedIn()) {
         </div>
     </div>
     <hr>
+
     <div class="w3-container">
-        <!--Bar chart-->
-        <div class="skills">
-            <ul class="lines">
-                <li class="line l--0">
-            <span class="line__label title">
-              Hotel Rating:
-            </span>
-                </li>
-                <li class="line l--25">
-            <span class="line__label">
-              2
-            </span>
-                </li>
-                <li class="line l--50">
-            <span class="line__label">
-              5
-            </span>
-                </li>
-                <li class="line l--75">
-            <span class="line__label">
-              7
-            </span>
-                </li>
-                <li class="line l--100">
-            <span class="line__label">
-              10
-            </span>
-                </li>
-            </ul>
-            <div class="charts">
-                <div class="chart chart--dev">
-                    <br>
-                    <span class="chart__title">Hotel Rating Chart for <?php
-                        echo date("l jS \of F Y") . "<br>";
-                        ?></span>
-                    <br>
-                    <br>
-                    <ul class="chart--horiz">
-                        <?php
-                        $sql = "SELECT * FROM corp_hotels WHERE rating";
-                        $query = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_array($query)) {
-                            ?>
-                            <li class="chart__bar" style="width: <?= $row['rating'] ?>00px;">
-                    <span class="chart__label">
-                      <?= $row['hotel_name'] ?> | Rating <?= $row['rating'] ?>
-                    </span>
-                            </li>
-                            <?php
-                        } ?>
-                    </ul>
-                </div>
+
+    </div>
+    <div class="w3-panel">
+        <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-third">
+                <div id="map" style="width:100%;height:200px;"></div>
             </div>
-            <br>
-            <hr>
         </div>
     </div>
-            <div id="map" style="width:100%;height:65%;"></div>
 
 
     <!-- Footer -->
-            <footer class="footer w3-container w3-teal">
-                <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>
-            </footer>
-            <!-- End page content -->
+    <footer class="footer w3-container w3-teal">
+        <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>
+    </footer>
+    <!-- End page content -->
 
 
-        <script>
-            // Get the Sidebar
-            var mySidebar = document.getElementById("mySidebar");
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
 
-            // Get the DIV with overlay effect
-            var overlayBg = document.getElementById("myOverlay");
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
 
-            // Toggle between showing and hiding the sidebar, and add overlay effect
-            function w3_open() {
-                if (mySidebar.style.display === 'block') {
-                    mySidebar.style.display = 'none';
-                    overlayBg.style.display = "none";
-                } else {
-                    mySidebar.style.display = 'block';
-                    overlayBg.style.display = "block";
-                }
-            }
-
-            // Close the sidebar with the close button
-            function w3_close() {
-                mySidebar.style.display = "none";
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
                 overlayBg.style.display = "none";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block";
             }
-        </script>
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+            overlayBg.style.display = "none";
+        }
 
         <!-- Js code for map -->
-        <script>
-            function myMap() {
-                var map = new google.maps.Map(
-                    document.getElementById('map'),
-                    mapOptions
-                );
-                var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-                var mapCanvas = document.getElementById('map');
-                var mapOptions = {
-                    center: myCenter,
-                    zoom: 10
-                };
-                var map = new google.maps.Map(mapCanvas, mapOptions);
-                var marker = new google.maps.Marker({
-                    position: myCenter
-                });
-                marker.setMap(map);
-            }
-        </script>
+        function myMap() {
+            var map = new google.maps.Map(
+                document.getElementById('map'),
+                mapOptions
+            );
+            var myCenter = new google.maps.LatLng(6.9271, 79.8612);
+            var mapCanvas = document.getElementById('map');
+            var mapOptions = {
+                center: myCenter,
+                zoom: 10
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({
+                position: myCenter
+            });
+            marker.setMap(map);
+        }
+    </script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZf_J6NsuyTn4abnSc7mw6yJbE_y_f39s&callback=myMap">
-        </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZf_J6NsuyTn4abnSc7mw6yJbE_y_f39s&callback=myMap">
+    </script>
 
 </body>
 

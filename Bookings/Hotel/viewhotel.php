@@ -1,3 +1,12 @@
+<?php
+include '../../admin/functions.php';
+
+if (!isLoggedIn()) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -50,7 +59,6 @@
 </head>
 
 <body>
-  <input id="myInput" type="text" placeholder="Search..">
   <br><br>
   <br>
   <br>
@@ -64,11 +72,11 @@
       <thead>
         <th>Id </th>
         <th>First Name</th>
-        <th>Last Name</th>
-        <th>Contact Number</th>
+        <th>Contact No.</th>
         <th>Approver</th>
         <th>Requestor Name</th>
-        <th>Requestor Phone No.</th>
+        <th>Requestor Mail</th>
+        <th>Requestor Contact No.</th>
         <th>Requestor Department</th>
         <th>Check In</th>
         <th>Check Out</th>
@@ -79,8 +87,8 @@
       </thead>
       <tbody id="myTable">
         <?php
-include 'db-config.php';
-$query = mysqli_query($conn, "select * from `trans_hotel`");
+include '../../admin/db-config.php';
+$query = mysqli_query($conn, "select * from `trans_hotel` where `employee_name` = '".$_SESSION['user']['username']."' ");
 while ($row = mysqli_fetch_array($query)) {
     ?>
         <tr>
@@ -105,7 +113,8 @@ while ($row = mysqli_fetch_array($query)) {
       </tbody>
     </table>
     <br>
-    <a href="home.php"><button class="button" type="button">CLOSE</button></a>
+    <a href="../../admin/home.php"><button class="button" type="button">CLOSE</button></a>
+      <a href="#"><button class="button" type="button" onclick="print_out();">Print</button></a>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
@@ -117,6 +126,12 @@ while ($row = mysqli_fetch_array($query)) {
       });
     });
   });
+  </script>
+<!--  js code for print-->
+  <script>
+      function print_out() {
+          window.print();
+      }
   </script>
 </body>
 

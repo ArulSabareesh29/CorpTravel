@@ -56,13 +56,13 @@ if (!isLoggedIn()) {
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <style>
-  .container {
-    padding-top: 50px;
-  }
-  </style>
 
   <title>Transport Form</title>
+    <style>
+        .btn_float{
+            float: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -104,9 +104,12 @@ if (isset($success_message)) {echo "<div>" . $success_message . "</div>";}
             <label for="employee_name">Employee Name</label>
           </div>
           <div class="input-field col s6 m6">
-            <a href="#" class="btn-floating blue pulse prefix add_button">
-              <i class="material-icons">add</i>
-            </a>
+              <div class="btn_float">
+                  <a href="#" class="btn-floating blue pulse prefix add_button">
+                      <i class="material-icons">add</i>
+                  </a>
+              </div>
+
             <input placeholder="Contact Details" id="contact_no" type="text" class="validate" name="contact_no"
               required />
             <label for="contact_no">Contact No</label>
@@ -126,9 +129,9 @@ if (isset($success_message)) {echo "<div>" . $success_message . "</div>";}
             <select id="alt_line_mgr" name="alt_line_mgr" required>
               <option value="" disabled selected>Choose your Alternate Approver
               </option>
-              <option value="1">John Doe</option>
-              <option value="2">Michael Marsh</option>
-              <option value="3">Rick Grimes</option>
+              <option value="John Doe">John Doe</option>
+              <option value="Michael Marsh">Michael Marsh</option>
+              <option value="Rick Grimes">Rick Grimes</option>
             </select>
             <label>Alternate Line Manager</label>
           </div>
@@ -163,17 +166,17 @@ if (isset($success_message)) {echo "<div>" . $success_message . "</div>";}
               <select id="dept_name" name="dept_name" required>
                 <option value="" disabled selected>Select your Department</option>
                 <option value="John Doe">John Doe</option>
-                <option value="2">Michael Marsh</option>
-                <option value="3">Rick Grimes</option>
+                <option value="Michael Marsh">Michael Marsh</option>
+                <option value="Rick Grimes">Rick Grimes</option>
               </select>
               <label>Department Name</label>
             </div>
             <div class="input-field col s12 m6">
               <select id="cost_center" name="cost_center" required>
                 <option value="" disabled selected>Select your CRG</option>
-                <option value="1">250</option>
-                <option value="2">269</option>
-                <option value="3">200</option>
+                <option value="250">250</option>
+                <option value="269">269</option>
+                <option value="200">200</option>
               </select>
               <label>Cost Center</label>
             </div>
