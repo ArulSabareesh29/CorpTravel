@@ -81,6 +81,7 @@
       </div>
     </div>
   </div>
+  <?php include 'chat.php' ?>
   <!-- Compiled and minified JavaScript -->
   <script src="js/materialize.min.js"></script>
   <script>

@@ -43,7 +43,7 @@
 
         /* Add styles to the form container */
         .form-container {
-            max-width: 370px;
+            max-width: 346px;
             max-height: 560px;
             /*padding: 10px;*/
             background-color: white;
@@ -74,7 +74,7 @@
             border: none;
             cursor: pointer;
             width: 100%;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             opacity: 0.8;
         }
 

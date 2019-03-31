@@ -11,7 +11,7 @@
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CorpTravel - Home</title>
+    <title>Corp Travel - Home</title>
 </head>
 
 <body id="home" class="scrollspy">
@@ -20,7 +20,7 @@
     <nav class="cyan darken-1">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Corp Travel</a>
+                <a href="#home" class="brand-logo">Corp Travel</a>
                 <a href="#" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>

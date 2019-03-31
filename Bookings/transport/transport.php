@@ -29,7 +29,7 @@ if (!isLoggedIn()) {
     <nav class="cyan darken-1">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Corp Travel</a>
+                <a href="../../menu/menu.php" class="brand-logo">Corp Travel</a>
                 <a href="#" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
@@ -51,13 +51,13 @@ if (!isLoggedIn()) {
 </div>
 <ul class="sidenav" id="mobile-nav">
     <li>
-        <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+        <a href="transport.php">Hi, <?php echo $_SESSION['user']['username']; ?></a>
     </li>
     <li id="myaccount">
         <a href="#account">My Account</a>
     </li>
     <li>
-        <a href="login.php">Login</a>
+        <a href="../../index.php">Log Out</a>
     </li>
 </ul>
 
@@ -135,14 +135,12 @@ if (!isLoggedIn()) {
 <section class="section container scrollspy" id="contact">
     <div class="row">
         <div class="col s12 l5">
-            <h2 class="blue-text text-darken-4">Booking Form</h2>
+            <h2 class="blue-text text-darken-4">Contact Us</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                at lacus congue, suscipit elit nec, tincidunt orci.
+                Corp Travel ensures every user in the company has a great experience in using this site.
             </p>
             <p>
-                Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero.
-                Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.
+                Please feel free to contact us for any feedback or any complains regarding this site.
             </p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
