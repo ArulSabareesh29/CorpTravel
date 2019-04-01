@@ -62,8 +62,6 @@ body {
     text-align: center;
     position: absolute;
     bottom: -20px;
-    right: -50px;
-    font-weight: 900;
 }
 
 .line__label.title {
@@ -85,9 +83,9 @@ body {
 }
 
 .chart:first-child {
-    margin: 160px;
+    /*margin: 160px;*/
     margin-top: -142px;
-    margin-left: -135px;
+    /*margin-left: -135px;*/
 }
 
 .chart__title {
@@ -209,12 +207,15 @@ body {
 }
 
 .footer {
-    position: fixed;
+    position: relativw;
+    padding-top: 10px;
+    margin-top: 10px;
     left: 0;
     bottom: 0;
     width: 100%;
     color: white;
     text-align: center;
+    background-color: #00acc1 !important;
     z-index: 10;
 }
 

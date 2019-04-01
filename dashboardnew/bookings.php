@@ -52,7 +52,8 @@ if (!isLoggedIn()) {
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" alt="admin_user" style="width:75px">
+            <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" alt="admin_user"
+                 style="width:75px">
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Welcome <em><?php echo $_SESSION['user']['username']; ?></em></span><br>
@@ -69,10 +70,10 @@ if (!isLoggedIn()) {
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
         <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
+        <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
+        <a href="views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
+        <a href="geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
@@ -136,49 +137,123 @@ if (!isLoggedIn()) {
     </div>
     <hr>
     <div class="w3-container">
-        <table id="example" class="tbl_border" border="5">
-            <thead>
-            <tr>
-                <th>
-                    <center>Booking Type</center>
-                </th>
-                <th>
-                    <center>Booking Code</center>
-                </th>
-                <th>
-                    <center>Status</center>
-                </th>
-                <th>
-                    <center>Date and Time</center>
-                </th>
-                <th>
-                    <center>Time of Booking</center>
-                </th>
-            </tr>
-            </thead>
-            <tbody id="myTable">
-            <?php
-
-            $sql = "SELECT * FROM booking";
-
-            $query = mysqli_query($conn, $sql);
-
-            while ($row = mysqli_fetch_array($query)) {
-                ?>
-
+        <div class="w3-responsive">
+            <table id="example" class=" w3-table-all w3-hoverable tbl_border" border="5">
+                <thead>
+                <tr>
+                    <th>
+                        <center>Booking Type</center>
+                    </th>
+                    <th>
+                        <center>Booking Code</center>
+                    </th>
+                    <th>
+                        <center>Status</center>
+                    </th>
+                    <th>
+                        <center>Date and Time</center>
+                    </th>
+                    <th>
+                        <center>Time of Booking</center>
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
                 <?php
-                echo '<tr>
+
+                $sql = "SELECT * FROM booking";
+
+                $query = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_array($query)) {
+                    ?>
+
+                    <?php
+                    echo '<tr>
                     <td><center>' . $row['booking_type'] . '</center></td>
                     <td><center>' . $row['booking_code'] . '</center></td>
                     <td><center><font size="3px"><b>' . $row['status'] . '</b></font></center></td>
                     <td><center>' . $row['date_time'] . '</center></td>
                     <td><center>' . $row['timestamp'] . '</center></td>
 				</tr>';
-            } ?>
-            <tr>
-            </tr>
-            </tbody>
-        </table>
+                } ?>
+                <tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--        Enter Card Analytics of Boking Here-->
+        <div class="w3-quarter">
+            <h4>Booking Card</h4>
+        </div>
+        <div class="w3-quater">
+
+            <h4>Booking Card 2</h4>
+        </div>
+    </div>
+    <div class="w3-container">
+        <!--   Transport Booking Details     -->
+        <div class="w3-responsive">
+            <table id="example" class=" w3-table-all w3-hoverable">
+                <thead>
+                <tr>
+                    <th>
+                        <center>Booking ID</center>
+                    </th>
+                    <th>
+                        <center>Passenger Name</center>
+                    </th>
+                    <th>
+                        <center>Contact No.</center>
+                    </th>
+                    <th>
+                        <center>Line Manager</center>
+                    </th>
+                    <th>
+                        <center>Requstor Name</center>
+                    </th>
+                    <th>
+                        <center>Cost Center</center>
+                    </th>
+                    <th>
+                        <center>Journey Start</center>
+                    </th>
+                    <th>
+                        <center>Journey End</center>
+                    </th>
+                    <th>
+                        <center>Timestamp</center>
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <?php
+
+                $sql = "SELECT * FROM trans_transport";
+
+                $query = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_array($query)) {
+                    ?>
+
+                    <?php
+                    echo '<tr>
+                    <td><center>' . $row['id'] . '</center></td>
+                    <td><center>' . $row['passenger_name'] . '</center></td>
+                    <td><center><font size="3px"><b>' . $row['contact_no'] . '</b></font></center></td>
+                    <td><center>' . $row['line_mgr'] . '</center></td>
+                    <td><center>' . $row['req_first_name'] . '</center></td>
+                    <td><center>' . $row['cost_center'] . '</center></td>
+                    <td><center>' . $row['journey_start'] . '</center></td>
+                    <td><center>' . $row['journey_end'] . '</center></td>
+                    <td><center>' . $row['timestamp'] . '</center></td>
+				</tr>';
+                } ?>
+                <tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 

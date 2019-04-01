@@ -32,11 +32,16 @@ if (!isLoggedIn()) {
 <title>Corp Travel - Dashboard</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="css/dashboard.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<?php
+include("Calculate.php");
+?>
 
 <body class="w3-white">
 
@@ -140,18 +145,151 @@ if (!isLoggedIn()) {
     </div>
 
 
+    <!--    <div class="w3-panel">-->
+    <!--        <hr style="border: 1px solid black;">-->
+    <!--        <div class="w3-row-padding" style="margin:0 -16px">-->
+    <!--            <div class="w3-third">-->
+    <!--                <div id="map" style="width:100%;height:200px;"></div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <!--Pie Chart-->
     <div class="w3-panel">
         <hr style="border: 1px solid black;">
         <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-third">
-                <div id="map" style="width:100%;height:200px;"></div>
+            <div class="w3-half">
+                <div id="piechart" style="width: 720px; height: 500px;"></div>
+
+                <script type="text/javascript">
+                    google.charts.load('current', {'packages': ['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+
+                        var data = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Employees',    <?php echo $numberOfEUserRows;?> ],
+                            ['Vendors',     <?php echo $numberOfVenUserRows;?> ],
+                            ['Admin',   <?php echo $numberOfAdUserRows;?> ]
+                        ]);
+
+                        var options = {
+                            title: 'CorpTravel Users',
+                            legend: 'bottom'
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                        chart.draw(data, options);
+                    }
+                </script>
+            </div>
+            <div class="w3-half w3-right-align">
+                <div class="w3-responsive">
+                    <table class="w3-table-all">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Points</th>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
 
+    <div class="w3-panel">
+        <hr style="border: 1px solid black;">
+        <div class="w3-row w3-row-padding" style="margin:0 -16px">
+            <div class="w3-s12">
+                <div id="columnchart_material" style="width: 1500px; height: 500px;"></div>
+
+                <script type="text/javascript">
+                    google.charts.load('current', {'packages': ['bar']});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Month', 'Transport', 'Hotel', 'Air Travel'],
+                            ['Jan', 1000, 400, 200],
+                            ['Feb', 1170, 460, 250],
+                            ['Mar', 660, 1120, 300],
+                            ['Apr', 1030, 540, 350],
+                            ['May', 1030, 540, 350],
+                            ['Jun', 1030, 540, 350],
+                            ['Jul', 1030, 540, 350],
+                            ['Aug', 1030, 540, 350],
+                            ['Sep', 1030, 540, 350],
+                            ['Oct', 1030, 540, 350],
+                            ['Nov', 1030, 540, 350],
+                            ['Dec', 1030, 540, 350],
+                        ]);
+
+                        var options = {
+                            chart: {
+                                title: 'CorpTravel Bookings',
+                                // legend: 'bottom',
+                                // width:'400',
+                                // height:'300',
+                            }
+                        };
+
+                        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                        chart.draw(data, google.charts.Bar.convertOptions(options));
+                    }
+                </script>
+            </div>
+            <div class="w3-panel">
+                <div class="w3-responsive">
+                    <div class="w3-quater">
+                        <table class="w3-table-all">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Points</th>
+                            </tr>
+                            <tr>
+                                <td>Jill</td>
+                                <td>Smith</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Jill</td>
+                                <td>Smith</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Jill</td>
+                                <td>Smith</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="footer w3-container w3-teal">
+    <footer class="footer w3-container w3-teal ">
         <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>
     </footer>
     <!-- End page content -->

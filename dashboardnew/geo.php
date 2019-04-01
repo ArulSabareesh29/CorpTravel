@@ -28,7 +28,7 @@ if (!isLoggedIn()) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html></html>
 <title>Corp Travel - Dashboard</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,10 +52,11 @@ if (!isLoggedIn()) {
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" style="width:75px">
+            <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" alt="admin_user"
+                 style="width:75px">
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Welcome <strong><?php echo $_SESSION['user']['username']; ?></strong></span><br>
+            <span>Welcome <em><?php echo $_SESSION['user']['username']; ?></em></span><br>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -68,12 +69,10 @@ if (!isLoggedIn()) {
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i
-                    class="fa fa-users fa-fw"></i> Overview</a>
-        <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i
-                    class="fa fa-book-open fa-fw"></i> Bookings</a>
+        <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+        <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
         <a href="views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
+        <a href="traffic.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
         <a href="geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
@@ -137,75 +136,14 @@ if (!isLoggedIn()) {
         </div>
     </div>
     <hr>
-
+    <!--    Google Charts Implementation -->
     <div class="w3-panel">
-        <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-row-padding w3-margin-bottom" style="margin:0 -16px">
             <div class="w3-half">
-                <!--Bar chart-->
-                <div class="skills">
-                    <ul class="lines">
-                        <li class="line l--0">
-            <span class="line__label title">
-              Hotel Rating:
-            </span>
-                        </li>
-                        <li class="line l--25">
-            <span class="line__label">
-              2
-            </span>
-                        </li>
-                        <li class="line l--50">
-            <span class="line__label">
-              5
-            </span>
-                        </li>
-                        <li class="line l--75">
-            <span class="line__label">
-              7
-            </span>
-                        </li>
-                        <li class="line l--100">
-            <span class="line__label">
-              10
-            </span>
-                        </li>
-                    </ul>
-                    <div class="charts">
-                        <div class="chart chart--dev">
-                            <br>
-                            <span class="chart__title">Hotel Rating Chart for <?php
-                                echo date("l jS \of F Y") . "<br>";
-                                ?></span>
-                            <br>
-                            <br>
-                            <ul class="chart--horiz">
-                                <?php
-                                $sql = "SELECT * FROM corp_hotels WHERE rating";
-                                $query = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_array($query)) {
-                                    ?>
-                                    <li class="chart__bar" style="width: <?= $row['rating'] ?>00px;">
-                    <span class="chart__label">
-                      <?= $row['hotel_name'] ?> | Rating <?= $row['rating'] ?>
-                    </span>
-                                    </li>
-                                    <?php
-                                } ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <br>
-                    <hr>
-                </div>
+                <div id="chart_div" style="width: 900px; height: 500px;"></div>
             </div>
         </div>
-    </div>
-    <div class="w3-panel">
-        <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-third">
-                <h4>Hello World</h4>
-            </div>
-        </div>
+
     </div>
 
 
@@ -216,56 +154,43 @@ if (!isLoggedIn()) {
     </footer>
     <!-- End page content -->
 
+</div>
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+<script type='text/javascript'>
+    google.charts.load('current', {
+        'packages': ['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawMarkersMap);
 
-    <script>
-        // Get the Sidebar
-        var mySidebar = document.getElementById("mySidebar");
+    function drawMarkersMap() {
+        var data = google.visualization.arrayToDataTable([
+            ['City',   'Population', 'Area'],
+            ['Rome',      2761477,    1285.31],
+            ['Milan',     1324110,    181.76],
+            ['Naples',    959574,     117.27],
+            ['Turin',     907563,     130.17],
+            ['Palermo',   655875,     158.9],
+            ['Genoa',     607906,     243.60],
+            ['Bologna',   380181,     140.7],
+            ['Florence',  371282,     102.41],
+            ['Fiumicino', 67370,      213.44],
+            ['Anzio',     52192,      43.43],
+            ['Ciampino',  38262,      11]
+        ]);
 
-        // Get the DIV with overlay effect
-        var overlayBg = document.getElementById("myOverlay");
+        var options = {
+            region: 'IT',
+            displayMode: 'markers',
+            colorAxis: {colors: ['green', 'blue']}
+        };
 
-        // Toggle between showing and hiding the sidebar, and add overlay effect
-        function w3_open() {
-            if (mySidebar.style.display === 'block') {
-                mySidebar.style.display = 'none';
-                overlayBg.style.display = "none";
-            } else {
-                mySidebar.style.display = 'block';
-                overlayBg.style.display = "block";
-            }
-        }
-
-        // Close the sidebar with the close button
-        function w3_close() {
-            mySidebar.style.display = "none";
-            overlayBg.style.display = "none";
-        }
-    </script>
-
-    <!-- Js code for map -->
-    <script>
-        function myMap() {
-            var map = new google.maps.Map(
-                document.getElementById('map'),
-                mapOptions
-            );
-            var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-            var mapCanvas = document.getElementById('map');
-            var mapOptions = {
-                center: myCenter,
-                zoom: 10
-            };
-            var map = new google.maps.Map(mapCanvas, mapOptions);
-            var marker = new google.maps.Marker({
-                position: myCenter
-            });
-            marker.setMap(map);
-        }
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZf_J6NsuyTn4abnSc7mw6yJbE_y_f39s&callback=myMap">
-    </script>
-
+        var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    };
+</script>
 </body>
 
 </html>

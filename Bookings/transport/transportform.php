@@ -35,7 +35,7 @@ if (isset($_POST['submit_btn'])) {
         $success_message = "Successfully Submitted!";
         unset($_POST);
     } else {
-        $error_message = "Problem in occurred. Please Try Again!";
+        $error_message = "Problem is occurred. Please Try Again!";
     }
 }
 include '../../admin/functions.php';
