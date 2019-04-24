@@ -283,7 +283,28 @@ if (!isLoggedIn()) {
         var addButton = $('.add_button'); //Add button selector
         var wrapper = $('.addUser'); //Input field wrapper
         var fieldHTML =
-            '<div><input placeholder="John" id="employee_name" type="text" class="validate" name="passenger_name" required /><a href="javascript:void(0);" class="btn-floating blue pulse prefix remove_button"><i class="material-icons">add</i>'; //New input field html
+            '                    <div class="row addUser">\n' +
+            '                        <div class="input-field col s6 m6">\n' +
+            '                            <i class="material-icons prefix">mail</i>\n' +
+            '                            <input id="employee_name" type="text" class="validate"\n' +
+            '                                   name="passenger_name"\n' +
+            '                                   required/>\n' +
+            '                            <label for="employee_name">Employee Name</label>\n' +
+            '                        </div>\n' +
+            '                        <div class="input-field col s6 m6">\n' +
+            '                            <div class="btn_float">\n' +
+            '                                <a href="#" class="btn-floating blue pulse prefix add_button">\n' +
+            '                                    <i class="material-icons">add</i>\n' +
+            '                                </a>\n' +
+            '                            </div>\n' +
+            '\n' +
+            '                            <input id="contact_no" type="text" class="validate"\n' +
+            '                                   name="contact_no"\n' +
+            '                                   required/>\n' +
+            '                            <label for="contact_no">Contact No</label>\n' +
+            '                        </div>\n' +
+            '                    </div>'; //New input field html
+
         var x = 1; //Initial field counter is 1
 
         //Once add button is clicked
