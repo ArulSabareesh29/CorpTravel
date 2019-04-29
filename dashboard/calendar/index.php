@@ -1,123 +1,53 @@
 <?php
-//index.php
-
+include("config.php");
+    
+if(isset($_POST['action']) or isset($_GET['view'])) //show all events
+{
+    if(isset($_GET['view']))
+    {
+        header('Content-Type: application/json');
+        $start = mysqli_real_escape_string($dbcon,$_GET["start"]);
+        $end = mysqli_real_escape_string($dbcon,$_GET["end"]);
+        
+        $result = mysqli_query($dbcon,"SELECT id, start ,end ,title FROM  fc_events_table where (date(start) >= '$start' AND date(start) <= '$end')");
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $events[] = $row; 
+        }
+        echo json_encode($events); 
+        exit;
+    }
+    elseif($_POST['action'] == "add") // add new event
+    {   
+        mysqli_query($dbcon,"INSERT INTO fc_events_table(
+                    title ,
+                    start ,
+                    end 
+                    )
+                    VALUES (
+                    '".mysqli_real_escape_string($dbcon,$_POST["title"])."',
+                    '".mysqli_real_escape_string($dbcon,date('Y-m-d H:i:s',strtotime($_POST["start"])))."',
+                    '".mysqli_real_escape_string($dbcon,date('Y-m-d H:i:s',strtotime($_POST["end"])))."'
+                    )");
+        header('Content-Type: application/json');
+        echo '{"id":"'.mysqli_insert_id($dbcon).'"}';
+        exit;
+    }
+    elseif($_POST['action'] == "update")  // update event
+    {
+        mysqli_query($dbcon,"UPDATE fc_events_table set 
+            start = '".mysqli_real_escape_string($dbcon,date('Y-m-d H:i:s',strtotime($_POST["start"])))."', 
+            end = '".mysqli_real_escape_string($dbcon,date('Y-m-d H:i:s',strtotime($_POST["end"])))."' 
+            where id = '".mysqli_real_escape_string($dbcon,$_POST["id"])."'");
+        exit;
+    }
+    elseif($_POST['action'] == "delete")  // remove event
+    {
+        mysqli_query($dbcon,"DELETE from fc_events_table where id = '".mysqli_real_escape_string($dbcon,$_POST["id"])."'");
+        if (mysqli_affected_rows($dbcon) > 0) {
+            echo "1";
+        }
+        exit;
+    }
+}
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Jquery Fullcalandar Integration with PHP and Mysql</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-  <script>
-  $(document).ready(function() {
-    var calendar = $('#calendar').fullCalendar({
-      editable: true,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      events: 'load.php',
-      selectable: true,
-      selectHelper: true,
-      select: function(start, end, allDay) {
-        var title = prompt("Enter Event Title");
-        if (title) {
-          var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-          var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-          $.ajax({
-            url: "insert.php",
-            type: "POST",
-            data: {
-              title: title,
-              start: start,
-              end: end
-            },
-            success: function() {
-              calendar.fullCalendar('refetchEvents');
-              alert("Added Successfully");
-            }
-          })
-        }
-      },
-      editable: true,
-      eventResize: function(event) {
-        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-        var title = event.title;
-        var id = event.id;
-        $.ajax({
-          url: "update.php",
-          type: "POST",
-          data: {
-            title: title,
-            start: start,
-            end: end,
-            id: id
-          },
-          success: function() {
-            calendar.fullCalendar('refetchEvents');
-            alert('Event Update');
-          }
-        })
-      },
-
-      eventDrop: function(event) {
-        var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-        var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-        var title = event.title;
-        var id = event.id;
-        $.ajax({
-          url: "update.php",
-          type: "POST",
-          data: {
-            title: title,
-            start: start,
-            end: end,
-            id: id
-          },
-          success: function() {
-            calendar.fullCalendar('refetchEvents');
-            alert("Event Updated");
-          }
-        });
-      },
-
-      eventClick: function(event) {
-        if (confirm("Are you sure you want to remove it?")) {
-          var id = event.id;
-          $.ajax({
-            url: "delete.php",
-            type: "POST",
-            data: {
-              id: id
-            },
-            success: function() {
-              calendar.fullCalendar('refetchEvents');
-              alert("Event Removed");
-            }
-          })
-        }
-      },
-
-    });
-  });
-  </script>
-</head>
-
-<body>
-  <br />
-  <h2 align="center"><a href="#">Jquery Fullcalandar Integration with PHP and Mysql</a></h2>
-  <br />
-  <div class="container">
-    <div id="calendar"></div>
-  </div>
-</body>
-
-</html>

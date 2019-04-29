@@ -50,7 +50,7 @@
                 <div class="col s12 m6 l6 offset-l3">
                     <div class="card">
                         <div class="card-action cyan darken-1 white-text">
-                            <h3 class="center">Login Form</h3>
+                            <h3 class="center">Login </h3>
                         </div>
                         <div class="card-content">
                             <form method="post" action="login.php">
@@ -65,10 +65,6 @@
                                 <div class="input-group">
                                     <label>Password</label>
                                     <input type="password" name="password">
-                                </div>
-                                <div class="form-field">
-                                    <label>Remember Me</label>
-                                    <input type="checkbox" name="rememberme">
                                 </div>
                                 <br>
                                 <div class="input-group">

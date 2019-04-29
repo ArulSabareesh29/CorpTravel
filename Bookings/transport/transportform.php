@@ -56,6 +56,7 @@ if (!isLoggedIn()) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="shortcut icon" href="img/LogoV1.png">
     <style>
         .form {
             padding-top: 50px;
@@ -136,7 +137,7 @@ if (!isLoggedIn()) {
                         </div>
                         <div class="input-field col s6 m6">
                             <div class="btn_float">
-                                <a href="#" class="btn-floating blue pulse prefix add_button">
+                                <a href="#" class="btn-floating blue prefix add_button">
                                     <i class="material-icons">add</i>
                                 </a>
                             </div>
@@ -293,8 +294,8 @@ if (!isLoggedIn()) {
             '                        </div>\n' +
             '                        <div class="input-field col s6 m6">\n' +
             '                            <div class="btn_float">\n' +
-            '                                <a href="#" class="btn-floating blue pulse prefix add_button">\n' +
-            '                                    <i class="material-icons">add</i>\n' +
+            '                                <a href="#" class="btn-floating blue prefix add_button">\n' +
+            '                                    <i class="material-icons">remove</i>\n' +
             '                                </a>\n' +
             '                            </div>\n' +
             '\n' +

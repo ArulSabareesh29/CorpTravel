@@ -96,7 +96,7 @@ include 'admin/functions.php';
 <section class="slider">
     <ul class="slides">
         <li>
-            <img src="https://amadeus.com/images/en/air-transportation/airports/airport-terminal-aircrafts-at-dusk.jpg"/>
+            <img  class="slideShow "src="https://image.ibb.co/hbEMux/resort1.jpg"/>
             <!-- random image -->
             <div class="caption center-align">
                 <h3>Book Your Travel!</h3>
@@ -108,7 +108,7 @@ include 'admin/functions.php';
         </li>
         <li>
             <img
-                    src="https://images.unsplash.com/photo-1469286663112-f58a16c6f075?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80"/>
+                    src="https://cdn.pixabay.com/photo/2015/05/01/14/46/new-york-748595_960_720.jpg"/>
             <!-- random image -->
             <div class="caption left-align">
                 <h3>We Work with all Budgets</h3>
@@ -121,7 +121,7 @@ include 'admin/functions.php';
         </li>
         <li>
             <img
-                    src="https://images.unsplash.com/photo-1497290788934-80266e135a5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"/>
+                    src="https://cdn.pixabay.com/photo/2015/01/20/13/13/ipad-605439_1280.jpg"/>
             <!-- random image -->
             <div class="caption right-align">
                 <h3>Group & Individual Getaways</h3>
@@ -157,7 +157,7 @@ include 'admin/functions.php';
                 <div class="card">
                     <div class="card-image">
                         <img
-                                src="https://images.unsplash.com/photo-1479837524808-8bfbd8b0ce8d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                                src="img/boxImage1.jpg"
                                 alt=""/>
                         <span class="card-title">Bangalore,India</span>
                     </div>
@@ -171,7 +171,7 @@ include 'admin/functions.php';
                 <div class="card">
                     <div class="card-image">
                         <img
-                                src="https://images.unsplash.com/photo-1522570939475-2f2f9cd2a7a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                                src="img/boxImage2.jpg"
                                 alt=""/>
                         <span class="card-title">Nuwer Eliya,Sri Lanka</span>
                     </div>
@@ -184,7 +184,7 @@ include 'admin/functions.php';
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
-                        <img src="img/resort3.jpg" alt=""/>
+                        <img src="img/boxImage3.jpg" alt=""/>
                         <span class="card-title">Cancun,Mexico</span>
                     </div>
                     <div class="card-content">
@@ -257,7 +257,7 @@ include 'admin/functions.php';
                     <li class="collection-item">Miami, Florida 555</li>
                 </ul>
             </div>
-            <form method="POST" action="<?php $_PHP_SELF ?>">
+            <form method="post" action="<?php $_PHP_SELF ?>">
                 <?php
                 if (isset($success_message)) {
                     echo "<div>" . $success_message . "</div>";
