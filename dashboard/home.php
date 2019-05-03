@@ -57,7 +57,8 @@ if (!isLoggedIn()) {
         <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;margin-top: 20px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
                 <div class="w3-col s4">
-                    <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" style="width:75px">
+                    <img src="assets/user_vector.jpg" class="w3-circle w3-margin-right" alt="admin_user"
+                         style="width:95px">
                 </div>
                 <div class="w3-col s8 w3-bar">
                     <span>Welcome <strong><?php echo $_SESSION['user']['username']; ?></strong></span><br>
@@ -78,12 +79,7 @@ if (!isLoggedIn()) {
                                                                                        class="fa fa-users fa-fw"></i> Overview</a>
                 <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i
                                                                                    class="fa fa-book-open fa-fw"></i> Bookings</a>
-                <a href="views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-                <a href="traffic.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-                <a href="geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
                 <a href="reports.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Reports</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
             </div>
         </nav>
 

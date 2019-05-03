@@ -127,9 +127,9 @@ if (!isLoggedIn()) {
                     <div class="row addUser">
                         <div class="input-field col s6 m6 l6">
                             <i class="material-icons prefix">person_pin</i>
-                            <input placeholder="John" id="first_name" type="text" class="validate"
+                            <input placeholder="<?php echo $_SESSION['user']['username']; ?>" id="first_name" type="text" class="validate"
                                    name="employee_name"
-                                   required/>
+                                   required value="<?php echo $_SESSION['user']['username']; ?>" disabled/>
                             <label for="visitor_name">Employee First Name</label>
                         </div>
                         <div class="input-field col s6 m6 l6">

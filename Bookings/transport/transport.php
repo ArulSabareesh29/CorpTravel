@@ -66,16 +66,12 @@ if (isset($_POST['submit_btn'])) {
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
-
                     </li>
                     <li id="menu">
                         <a href="#menu">Menu</a>
                     </li>
-                    <li id="myaccount">
-                        <a href="#account">My Account</a>
-                    </li>
-                    <li id="transportType">
-                        <a href="#transportType">Types of Transport</a>
+                    <li id="myBookings">
+                        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
                     </li>
                     <li id="contact">
                         <a href="#contact">Contact Us</a>
@@ -95,11 +91,8 @@ if (isset($_POST['submit_btn'])) {
     <li id="menu">
         <a href="#menu">Menu</a>
     </li>
-    <li id="myaccount">
-        <a href="#account">My Account</a>
-    </li>
-    <li id="transportType">
-        <a href="#transportType">Types of Transport</a>
+    <li id="myBookings">
+        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
     </li>
     <li id="contact">
         <a href="#contact">Contact Us</a>
@@ -109,7 +102,7 @@ if (isset($_POST['submit_btn'])) {
     </li>
 </ul>
 
-<!-- <h3 class="center align">Transport Services</h3> -->
+<!--ShowCase-->
 
 <div class="row showcase">
     <div class="col s12 m10 offset-m1 center">
@@ -117,11 +110,9 @@ if (isset($_POST['submit_btn'])) {
         <h5 class="white-text">
             Any Type of Road Transport needs could be booked here
         </h5>
-        <!-- <p class="white-text">
-Any Transport needs could be booked here
-</p> -->
+
         <br/><br/>
-        <a href="transportform.php" class="btn btn-large light-blue white-text">Book Now</a>
+        <a href="#transportType" class="btn btn-large light-blue white-text">Book Now</a>
     </div>
 </div>
 
@@ -142,6 +133,7 @@ Any Transport needs could be booked here
                 Your daily office related transport such as factory visits, workshops and home transport can be booked
                 here.
             </p>
+            <a href="transportform.php" class="btn btn-small light-blue white-text">Book Now</a>
         </div>
     </div>
     <div class="row">
@@ -155,6 +147,7 @@ Any Transport needs could be booked here
             <p>
                 Transport for office staff, project related parties from other companies can be booked here
             </p>
+            <a href="airportForm.php" class="btn btn-small light-blue white-text">Book Now</a>
         </div>
     </div>
     <div class="row">
@@ -168,6 +161,7 @@ Any Transport needs could be booked here
             <p>
                 Late night transport for employees to ensure a safe drive home
             </p>
+            <a href="nightTaxi.php" class="btn btn-small light-blue white-text">Book Now</a>
         </div>
     </div>
 </section>

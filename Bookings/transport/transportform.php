@@ -33,6 +33,7 @@ if (isset($_POST['submit_btn'])) {
     if (!empty($result)) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
+        echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -66,7 +67,7 @@ if (!isLoggedIn()) {
         }
     </style>
 
-    <title>Transport Form</title>
+    <title>Office Transport Form</title>
     <style>
         .btn_float {
             float: right;
@@ -80,7 +81,7 @@ if (!isLoggedIn()) {
     <nav class="cyan darken-1">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="../../menu/menu.php" class="brand-logo">Corp Travel</a>
+                <a href="../../menu/menu.php" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
                 <a href="#" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
@@ -89,8 +90,8 @@ if (!isLoggedIn()) {
                         <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
 
                     </li>
-                    <li id="myaccount">
-                        <a href="#account">My Account</a>
+                    <li id="myBookings">
+                        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
                     </li>
                     <li>
                         <a href="../../index.php">Sign Out</a>
@@ -104,8 +105,8 @@ if (!isLoggedIn()) {
     <li>
         <a href="transport.php">Hi, <?php echo $_SESSION['user']['username']; ?></a>
     </li>
-    <li id="myaccount">
-        <a href="#account">My Account</a>
+    <li id="myBookings">
+        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
     </li>
     <li>
         <a href="../../index.php">Log Out</a>
@@ -118,30 +119,25 @@ if (!isLoggedIn()) {
     <div class="row">
         <div class="card hoverable">
             <div class="card-content">
-                <h4 class="center">Transport Form</h4>
+                <h4 class="center">Office Transport Form</h4>
                 <form method="post" action="<?php $_PHP_SELF ?>">
                     <?php
                     if (isset($success_message)) {
                         echo "<div>" . $success_message . "</div>";
                     }
                     ?>
-                    <h4>Passenger Details</h4>
+                    <h5>Passenger Details</h5>
                     <hr/>
                     <div class="row addUser">
                         <div class="input-field col s6 m6">
-                            <i class="material-icons prefix">mail</i>
-                            <input placeholder="John" id="employee_name" type="text" class="validate"
+                            <i class="material-icons prefix">person_pin</i>
+                            <input placeholder="<?php echo $_SESSION['user']['username']; ?>" value="<?php echo $_SESSION['user']['username']; ?>" id="employee_name" type="text" class="validate"
                                    name="passenger_name"
-                                   required/>
+                                   required />
                             <label for="employee_name">Employee Name</label>
                         </div>
                         <div class="input-field col s6 m6">
-                            <div class="btn_float">
-                                <a href="#" class="btn-floating blue prefix add_button">
-                                    <i class="material-icons">add</i>
-                                </a>
-                            </div>
-
+                            <i class="material-icons prefix">phone</i>
                             <input placeholder="Contact Details" id="contact_no" type="text" class="validate"
                                    name="contact_no"
                                    required/>
@@ -150,6 +146,7 @@ if (!isLoggedIn()) {
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">business_center</i>
                             <select id="line_mgr" name="line_mgr" required>
                                 <option value="" disabled selected>Choose your Approver</option>
                                 <option value="John Doe">John Doe</option>
@@ -159,82 +156,63 @@ if (!isLoggedIn()) {
                             <label>Line Manager</label>
                         </div>
                         <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">business_center</i>
                             <select id="alt_line_mgr" name="alt_line_mgr" required>
                                 <option value="" disabled selected>Choose your Alternate Approver
                                 </option>
-                                <option value="John Doe">John Doe</option>
-                                <option value="Michael Marsh">Michael Marsh</option>
-                                <option value="Rick Grimes">Rick Grimes</option>
+                                <option value="Rupert">Rupert</option>
+                                <option value="Ponting">Ponting</option>
+                                <option value="Kumar">Kumar</option>
                             </select>
                             <label>Alternate Line Manager</label>
                         </div>
                     </div>
-                    <h4>Requestor Details</h4>
-                    <hr/>
                     <div class="row">
-                        <div class="input-field col s12 m6">
-                            <input placeholder="John" id="first_name" type="text" class="validate" name="req_first_name"
-                                   required/>
-                            <label for="first_name">First Name</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <input placeholder="Doe" id="last_name" type="text" class="validate" name="req_last_name"
-                                   required/>
-                            <label for="last_name">Last Name</label>
-                        </div>
+<!--                        <h5>Additional Details</h5>-->
+<!--                        <hr/>-->
                         <div class="row">
-                            <div class="input-field col s12 m6">
-                                <input placeholder="JohnDoe@example.com" id="email" type="email" class="validate"
-                                       name="email"
-                                       required/>
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">phone</i>
-                                <input type="number" id="number" placeholder="Enter Phone No..." class="validate"
-                                       name="req_contact_no"
-                                       required/>
-                                <label for="number">Contact Number</label>
-                            </div>
-                        </div>
-                        <h4>Additional Details</h4>
-                        <hr/>
-                        <div class="row">
-                            <div class="input-field col s12 m6">
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix">work_outline</i>
                                 <select id="dept_name" name="dept_name" required>
                                     <option value="" disabled selected>Select your Department</option>
-                                    <option value="John Doe">John Doe</option>
-                                    <option value="Michael Marsh">Michael Marsh</option>
-                                    <option value="Rick Grimes">Rick Grimes</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="HR">HR</option>
                                 </select>
                                 <label>Department Name</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <select id="cost_center" name="cost_center" required>
-                                    <option value="" disabled selected>Select your CRG</option>
-                                    <option value="250">250</option>
-                                    <option value="269">269</option>
-                                    <option value="200">200</option>
-                                </select>
-                                <label>Cost Center</label>
+                                <i class="material-icons prefix">local_taxi</i>
+                                <input type="text" id="pickup" name="pickup" required/>
+                                <label for="pickup">Pickup Point</label>
                             </div>
                             <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">local_taxi</i>
+                                <input type="text" id="drop" name="drop" required/>
+                                <label for="employee_name">Drop Point</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">date_range</i>
                                 <input type="text" id="date" name="journey_start" class="datepicker" required/>
-                                <label for="employee_name">Journey Start</label>
-                            </div>
-                            <div class="input-field col s6 m6">
-                                <input type="text" id="date" name="journey_end" class="datepicker" required/>
-                                <label for="employee_name">Journey End</label>
+                                <label for="employee_name">Journey Start Date</label>
                             </div>
                             <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">date_range</i>
+                                <input type="text" id="date" name="journey_end" class="datepicker" required/>
+                                <label for="employee_name">Journey End Date</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">timer</i>
                                 <input type="text" id="date" name="journey_start_time" class="timepicker" required/>
                                 <label for="employee_name">Journey Start Time</label>
                             </div>
-                            <div class="input-field col s6 m6">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">timer</i>
                                 <input type="text" id="date" name="journey_end_time" class="timepicker" required/>
                                 <label for="employee_name">Journey End Time</label>
                             </div>
                             <div class="input-field col s12 m12">
+                                <i class="material-icons prefix">message</i>
                             <textarea placeholder="Description" id="textarea1" class="materialize-textarea"
                                       name="description"
                                       required></textarea>

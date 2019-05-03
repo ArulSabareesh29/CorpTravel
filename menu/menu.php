@@ -23,44 +23,9 @@ if (!isLoggedIn()) {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
               integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
         <link rel="shortcut icon" href="img/LogoV1.png">
-        <style>
-            #modal {
-                position: fixed;
-                font-family: Arial, Helvetica, sans-serif;
-                top: 0;
-                left: 0;
-                background: rgba(0, 0, 0, 0.8);
-                z-index: 99999;
-                height: 100%;
-                width: 100%;
-            }
-
-            .modalconent {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: #fff;
-                width: 80%;
-                padding: 20px;
-            }
-        </style>
     </head>
 
     <body class="grey lighten-4" oncontextmenu="return false;">
-
-
-        <div id="modal">
-            <div class="modalconent">
-                <div class="row">
-                    <div class="col s12 m10 offset-m1 center">
-                        <h4>Welcome to Corp Travel <font color="red"><?php echo $_SESSION['user']['username']; ?> </font>
-                        </h4>
-                        <button id="button" class="btn waves-effect waves-light">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Navbar -->
         <div class="navbar-fixed">
             <nav class="cyan darken-1">
@@ -72,7 +37,10 @@ if (!isLoggedIn()) {
                         </a>
                         <ul class="right hide-on-med-and-down">
                             <li>
-                                <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+                                <a href="#welcome">Welcome To Corp Travel, <font color="#ff4500"><strong><?php echo $_SESSION['user']['username']; ?></strong></font></a>
+                            </li>
+                            <li>
+                                <a href="../dashboard/bookings_summary.php">Bookings Summary</a>
                             </li>
                             <li>
                                 <a href="../index.php">Logout</a>
@@ -85,13 +53,13 @@ if (!isLoggedIn()) {
         <!-- Side Navigation: Mobile View -->
         <ul class="sidenav" id="mobile-nav">
             <li>
-                <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+                <a href="#welcome">Welcome To Corp Travel, <font color="#ff4500"><strong><?php echo $_SESSION['user']['username']; ?></strong></font></a>
             </li>
             <li>
-                <a href="#account">View Bookings</a>
+                <a href="../dashboard/bookings_summary.php">Bookings Summary</a>
             </li>
             <li>
-                <a href="../../index.html">Sign Out</a>
+                <a href="../index.php">Logout</a>
             </li>
         </ul>
 
@@ -203,7 +171,7 @@ if (!isLoggedIn()) {
             };
         </script>
 
-        <!--        js code for auto logout function-->
+        <!--Auto logout functionality-->
         <script>
             var IDLE_TIMEOUT = 10; //seconds
             var _idleSecondsCounter = 0;
@@ -232,28 +200,28 @@ if (!isLoggedIn()) {
         <!--        js code ends here-->
 
         <!--        disable the Inspect element-->
-        <script>
-            document.onkeydown = function(e) {
-                if(event.keyCode == 123) {
-                    return false;
-                }
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                    return false;
-                }
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-                    return false;
-                }
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                    return false;
-                }
-                if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                    return false;
-                }
-            }
-        </script>
+<!--        <script>-->
+<!--            document.onkeydown = function(e) {-->
+<!--                if(event.keyCode == 123) {-->
+<!--                    return false;-->
+<!--                }-->
+<!--                if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {-->
+<!--                    return false;-->
+<!--                }-->
+<!--                if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {-->
+<!--                    return false;-->
+<!--                }-->
+<!--                if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {-->
+<!--                    return false;-->
+<!--                }-->
+<!--                if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {-->
+<!--                    return false;-->
+<!--                }-->
+<!--            }-->
+<!--        </script>-->
         <!--        js code ends here-->
 
-        <!--        disable copy and paste -->
+        <!--Disable copy and paste -->
         <script type="text/JavaScript">
             //courtesy of BoogieJack.com
             function killCopy(e){
@@ -268,7 +236,7 @@ if (!isLoggedIn()) {
                 document.onclick=reEnable
             }
         </script>
-        <!--        js code ends here-->
+        <!--Javascript code ends here-->
 
     </body>
 
