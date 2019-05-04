@@ -10,20 +10,16 @@ if (!$conn) {
 }
 
 if (isset($_POST['submit_btn'])) {
-    $query = "INSERT INTO trans_transport (passenger_name, contact_no, line_mgr, alt_line_mgr, req_first_name, req_last_name, email, req_contact_no, dept_name, cost_center, journey_start, journey_end, journey_start_time, journey_end_time, description) VALUES
+    $query = "INSERT INTO night_taxi (passenger_name, contact_no, line_mgr, alt_line_mgr, dept_name, pickup_location, drop_location, taxi_date, journey_start_time, journey_end_time, description) VALUES
 		(
         '" . $_POST["passenger_name"] . "',
         '" . $_POST["contact_no"] . "',
         '" . $_POST["line_mgr"] . "',
         '" . $_POST["alt_line_mgr"] . "',
-        '" . $_POST["req_first_name"] . "',
-        '" . $_POST["req_last_name"] . "',
-        '" . $_POST["email"] . "',
-        '" . $_POST["req_contact_no"] . "',
         '" . $_POST["dept_name"] . "',
-        '" . $_POST["cost_center"] . "',
-        '" . $_POST["journey_start"] . "',
-        '" . $_POST["journey_end"] . "',
+        '" . $_POST["pickup_location"] . "',
+        '" . $_POST["drop_location"] . "',
+        '" . $_POST["taxi_date"] . "',
         '" . $_POST["journey_start_time"] . "',
         '" . $_POST["journey_end_time"] . "',
         '" . $_POST["description"] . "')";
@@ -33,6 +29,8 @@ if (isset($_POST['submit_btn'])) {
     if (!empty($result)) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
+        echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -67,7 +65,7 @@ if (!isLoggedIn()) {
         }
     </style>
 
-    <title>Airport Transport Form</title>
+    <title>Night Taxi Form</title>
     <style>
         .btn_float {
             float: right;
@@ -132,9 +130,9 @@ if (!isLoggedIn()) {
                         <div class="input-field col s6 m6">
                             <i class="material-icons prefix">person_pin</i>
                             <input id="employee_name" type="text" class="validate"
-                                   name="<?php echo $_SESSION['user']['username']; ?>"
+                                   name="passenger_name"
                                    value="<?php echo $_SESSION['user']['username']; ?>"
-                                   required disabled/>
+                                   required/>
                             <label for="employee_name">Employee Name</label>
                         </div>
                         <div class="input-field col s6 m6">
@@ -161,9 +159,9 @@ if (!isLoggedIn()) {
                             <select id="alt_line_mgr" name="alt_line_mgr" required>
                                 <option value="" disabled selected>Choose your Alternate Approver
                                 </option>
-                                <option value="John Doe">John Doe</option>
-                                <option value="Michael Marsh">Michael Marsh</option>
-                                <option value="Rick Grimes">Rick Grimes</option>
+                                <option value="Kumar">Kumar</option>
+                                <option value="Ruwan">Ruwan</option>
+                                <option value="Ponting">Ponting</option>
                             </select>
                             <label>Alternate Line Manager</label>
                         </div>
@@ -173,62 +171,63 @@ if (!isLoggedIn()) {
                             <i class="material-icons prefix">work_outline</i>
                             <select id="dept_name" name="dept_name" required>
                                 <option value="" disabled selected>Select your Department</option>
-                                <option value="John Doe">John Doe</option>
-                                <option value="Michael Marsh">Michael Marsh</option>
-                                <option value="Rick Grimes">Rick Grimes</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="HR">HR</option>
                             </select>
                             <label>Department Name</label>
                         </div>
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">local_taxi</i>
-                            <input type="text" id="pickup" name="pickup" required/>
-                            <label for="pickup">Pickup Location Address</label>
+                            <input type="text" id="pickup" name="pickup_location" required/>
+                            <label for="pickup_location">Pickup Location Address</label>
                         </div>
                         <div class="input-field col s6 m6">
                             <i class="material-icons prefix">local_taxi</i>
-                            <input type="text" id="drop" name="drop" required/>
-                            <label for="employee_name">Drop Location Address</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="material-icons prefix">place</i>
-                            <input type="text" id="date" name="journey_start_time" class="datepicker" required/>
-                            <label for="employee_name">Pick up Point</label>
-                        </div>
-                        <div class="input-field col s6 m6">
-                            <i class="material-icons prefix">place</i>
-                            <input type="text" id="date" name="journey_end_time" class="datepicker" required/>
-                            <label for="employee_name">Drop Point</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <i class="material-icons prefix">timer</i>
-                            <input type="text" id="date" name="journey_start_time" class="timepicker" required/>
-                            <label for="employee_name">Journey Start Time</label>
-                        </div>
-                        <div class="input-field col s6 m6">
-                            <i class="material-icons prefix">timer</i>
-                            <input type="text" id="date" name="journey_end_time" class="timepicker" required/>
-                            <label for="employee_name">Journey End Time</label>
+                            <input type="text" id="drop" name="drop_location" required/>
+                            <label for="pickup_location">Drop Location Address</label>
                         </div>
                         <div class="input-field col s12 m12">
-                            <i class="material-icons prefix">message</i>
-                            <textarea placeholder="Description" id="textarea1" class="materialize-textarea"
-                                      name="description"
-                                      required></textarea>
-                            <label for="textarea1">Travel Description</label>
+                            <i class="material-icons prefix">place</i>
+                            <input type="text" id="date" name="taxi_date" class="datepicker" required/>
+                            <label for="taxi_date">Date</label>
                         </div>
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
-                        <i class="material-icons right">check</i>
-                    </button>
-                    <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
-                        <i class="material-icons right">clear</i>
-                    </button>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">timer</i>
+                        <input type="text" id="date" name="journey_start_time" class="timepicker" required/>
+                        <label for="journey_start_time">Journey Start Time</label>
+                    </div>
+                    <div class="input-field col s6 m6">
+                        <i class="material-icons prefix">timer</i>
+                        <input type="text" id="date" name="journey_end_time" class="timepicker" required/>
+                        <label for="journey_end_time">Journey End Time</label>
+                    </div>
+                    <div class="input-field col s12 m12">
+                        <i class="material-icons prefix">message</i>
+                        <textarea placeholder="Description" id="textarea1" class="materialize-textarea"
+                                  name="description"
+                                  required></textarea>
+                        <label for="textarea1">Travel Description</label>
+                    </div>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
+                            <i class="material-icons right">check</i>
+                        </button>
+                        <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
+                            <i class="material-icons right">clear</i>
+                        </button>
+                    </div>
             </div>
-            </form>
         </div>
-    </div>
+        </form>
     </div>
 </section>
+
+<!-- Section : Footer -->
+<footer class="section cyan darken-1 white-text center">
+    <p class="flow-text">Corp Travel 2019 &copy; Designed by Arul Sabareesh</p>
+</footer>
 
 <!-- Chatbot -->
 <?php include '../../chat.php' ?>

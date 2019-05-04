@@ -10,18 +10,15 @@ if (!$conn) {
 }
 
 if (isset($_POST['submit_btn'])) {
-    $query = "INSERT INTO trans_transport (passenger_name, contact_no, line_mgr, alt_line_mgr, req_first_name, req_last_name, email, req_contact_no, dept_name, cost_center, journey_start, journey_end, journey_start_time, journey_end_time, description) VALUES
+    $query = "INSERT INTO trans_transport (passenger_name, contact_no, line_mgr, alt_line_mgr, dept_name, pickup_location, drop_location, journey_start, journey_end, journey_start_time, journey_end_time, description) VALUES
 		(
         '" . $_POST["passenger_name"] . "',
         '" . $_POST["contact_no"] . "',
         '" . $_POST["line_mgr"] . "',
         '" . $_POST["alt_line_mgr"] . "',
-        '" . $_POST["req_first_name"] . "',
-        '" . $_POST["req_last_name"] . "',
-        '" . $_POST["email"] . "',
-        '" . $_POST["req_contact_no"] . "',
         '" . $_POST["dept_name"] . "',
-        '" . $_POST["cost_center"] . "',
+        '" . $_POST["pickup_location"] . "',
+        '" . $_POST["drop_location"] . "',
         '" . $_POST["journey_start"] . "',
         '" . $_POST["journey_end"] . "',
         '" . $_POST["journey_start_time"] . "',
@@ -34,6 +31,7 @@ if (isset($_POST['submit_btn'])) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
         echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -62,6 +60,7 @@ if (!isLoggedIn()) {
         .form {
             padding-top: 50px;
         }
+
         .card .card-content {
             padding: 39px;
         }
@@ -131,9 +130,11 @@ if (!isLoggedIn()) {
                     <div class="row addUser">
                         <div class="input-field col s6 m6">
                             <i class="material-icons prefix">person_pin</i>
-                            <input placeholder="<?php echo $_SESSION['user']['username']; ?>" value="<?php echo $_SESSION['user']['username']; ?>" id="employee_name" type="text" class="validate"
+                            <input placeholder="<?php echo $_SESSION['user']['username']; ?>"
+                                   value="<?php echo $_SESSION['user']['username']; ?>" id="employee_name" type="text"
+                                   class="validate"
                                    name="passenger_name"
-                                   required />
+                                   required/>
                             <label for="employee_name">Employee Name</label>
                         </div>
                         <div class="input-field col s6 m6">
@@ -168,8 +169,8 @@ if (!isLoggedIn()) {
                         </div>
                     </div>
                     <div class="row">
-<!--                        <h5>Additional Details</h5>-->
-<!--                        <hr/>-->
+                        <!--                        <h5>Additional Details</h5>-->
+                        <!--                        <hr/>-->
                         <div class="row">
                             <div class="input-field col s12 m12">
                                 <i class="material-icons prefix">work_outline</i>
@@ -183,12 +184,12 @@ if (!isLoggedIn()) {
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">local_taxi</i>
-                                <input type="text" id="pickup" name="pickup" required/>
+                                <input type="text" id="pickup" name="pickup_location" required/>
                                 <label for="pickup">Pickup Point</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix">local_taxi</i>
-                                <input type="text" id="drop" name="drop" required/>
+                                <input type="text" id="drop" name="drop_location" required/>
                                 <label for="employee_name">Drop Point</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -213,24 +214,31 @@ if (!isLoggedIn()) {
                             </div>
                             <div class="input-field col s12 m12">
                                 <i class="material-icons prefix">message</i>
-                            <textarea placeholder="Description" id="textarea1" class="materialize-textarea"
-                                      name="description"
-                                      required></textarea>
+                                <textarea placeholder="Description" id="textarea1" class="materialize-textarea"
+                                          name="description"
+                                          required></textarea>
                                 <label for="textarea1">Travel Description</label>
                             </div>
                         </div>
-                        <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
-                            <i class="material-icons right">check</i>
-                        </button>
-                        <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
-                            <i class="material-icons right">clear</i>
-                        </button>
+                        <div class="center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
+                                <i class="material-icons right">check</i>
+                            </button>
+                            <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
+                                <i class="material-icons right">clear</i>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Section : Footer -->
+<footer class="section cyan darken-1 white-text center">
+    <p class="flow-text">Corp Travel 2019 &copy; Designed by Arul Sabareesh</p>
+</footer>
 
 <!-- Chatbot -->
 <?php include '../../chat.php' ?>

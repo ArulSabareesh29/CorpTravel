@@ -10,18 +10,13 @@ if (!$conn) {
 }
 
 if (isset($_POST['submit_btn'])) {
-    $query = "INSERT INTO trans_hotel (employee_name, contact_no, line_mgr, alt_line_mgr, req_first_name, req_last_name, email, req_contact_no, dept_name, cost_center, check_in, check_out, no_people, no_rooms, room_type, description) VALUES
+    $query = "INSERT INTO trans_hotel (employee_name, contact_no, line_mgr, alt_line_mgr, dept_name, check_in, check_out, no_people, no_rooms, room_type, description) VALUES
 		(
         '" . $_POST["employee_name"] . "',
         '" . $_POST["contact_no"] . "',
         '" . $_POST["line_mgr"] . "',
         '" . $_POST["alt_line_mgr"] . "',
-        '" . $_POST["req_first_name"] . "',
-        '" . $_POST["req_last_name"] . "',
-        '" . $_POST["email"] . "',
-        '" . $_POST["req_contact_no"] . "',
         '" . $_POST["dept_name"] . "',
-        '" . $_POST["cost_center"] . "',
         '" . $_POST["check_in"] . "',
         '" . $_POST["check_out"] . "',
         '" . $_POST["no_people"] . "',
@@ -34,9 +29,11 @@ if (isset($_POST['submit_btn'])) {
     if (!empty($result)) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
+        echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
-        $error_message = "Problem in occurred. Please Try Again!";
+        $error_message = "Problem is occurred. Please Try Again!";
     }
 }
 
@@ -58,6 +55,7 @@ if (!isLoggedIn()) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="shortcut icon" href="img/LogoV1.png">
     <style>
         #form1 {
             padding-top: 50px;
@@ -75,7 +73,7 @@ if (!isLoggedIn()) {
     <nav class="cyan darken-1">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="../../menu/menu.php" class="brand-logo">Corp Travel</a>
+                <a href="../../menu/menu.php" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
                 <a href="#" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
@@ -109,110 +107,64 @@ if (!isLoggedIn()) {
     </li>
 </ul>
 
+<!--Hotel Form-->
+<section>
+    <div id="form1" class="container">
+        <div class="row">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <span class="card-title"><h4 class="center">Hotel Booking Form</h4></span>
 
-<div id="form1" class="container">
-    <div class="row">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title"><h4 class="center">Hotel Booking Form</h4></span>
-
-                <form method="post" action="<?php $_PHP_SELF ?>" class="hotel_box">
-                    <?php
-                    if (isset($success_message)) {
-                        echo "<div>" . $success_message . "</div>";
-                    }
-                    ?>
-                    <h5>Visitor Details</h5>
-                    <hr/>
-                    <div class="row addUser">
-                        <div class="input-field col s6 m6 l6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <input placeholder="<?php echo $_SESSION['user']['username']; ?>" id="first_name" type="text" class="validate"
-                                   name="employee_name"
-                                   required value="<?php echo $_SESSION['user']['username']; ?>" disabled/>
-                            <label for="visitor_name">Employee First Name</label>
-                        </div>
-                        <div class="input-field col s6 m6 l6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <input placeholder="Doe" id="last_name" type="text" class="validate"
-                                   name="last_name"
-                                   required/>
-                            <label for="last_name">Last Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">mail</i>
-                            <input placeholder="JohnDoe@example.com" id="email" type="email" class="validate"
-                                   name="email"
-                                   required/>
-
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">phone</i>
-                            <input type="number" id="number" placeholder="Enter Phone No..." class="validate"
-                                   name="contact_no"
-                                   required/>
-                            <label for="number">Contact Number</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <select id="line_mgr" name="line_mgr" required>
-                                <option value="" disabled selected>Choose your Approver</option>
-                                <option value="John Doe">John Doe</option>
-                                <option value="Michael Marsh">Michael Marsh</option>
-                                <option value="Rick Grimes">Rick Grimes</option>
-                            </select>
-                            <label>Line Manager</label>
-                        </div>
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">supervisor_account</i>
-                            <select id="alt_line_mgr" name="alt_line_mgr" required>
-                                <option value="" disabled selected>Choose your Alternate Approver
-                                </option>
-                                <option value="John Doe">John Doe</option>
-                                <option value="Michael Marsh">Michael Marsh</option>
-                                <option value="Rick Grimes">Rick Grimes</option>
-                            </select>
-                            <label>Alternate Line Manager</label>
-                        </div>
-                    </div>
-                    <h5>Requestor Details</h5>
-                    <hr/>
-                    <div class="row">
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <input placeholder="John" id="first_name" type="text" class="validate"
-                                   name="req_first_name"
-                                   required/>
-                            <label for="first_name">First Name</label>
-                        </div>
-                        <div class="input-field col s12 m6 l6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <input placeholder="Doe" id="last_name" type="text" class="validate"
-                                   name="req_last_name" required/>
-                            <label for="last_name">Last Name</label>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12 m6 l6">
-                                <i class="material-icons prefix">mail</i>
-                                <input placeholder="JohnDoe@example.com" id="email" type="email"
-                                       class="validate"
-                                       name="email"
-                                       required/>
-                                <label for="email">Email</label>
+                    <form method="post" action="<?php $_PHP_SELF ?>" class="hotel_box">
+                        <?php
+                        if (isset($success_message)) {
+                            echo "<div>" . $success_message . "</div>";
+                        }
+                        ?>
+                        <h5>Visitor Details</h5>
+                        <hr/>
+                        <div class="row addUser">
+                            <div class="input-field col s6 m6 l6">
+                                <i class="material-icons prefix">person_pin</i>
+                                <input placeholder="<?php echo $_SESSION['user']['username']; ?>" id="first_name"
+                                       type="text" class="validate"
+                                       name="employee_name"
+                                       required value="<?php echo $_SESSION['user']['username']; ?>"/>
+                                <label for="visitor_name">Employee First Name</label>
                             </div>
                             <div class="input-field col s12 m6 l6">
                                 <i class="material-icons prefix">phone</i>
-                                <input type="number" id="number" placeholder="Enter Phone No..."
-                                       class="validate"
-                                       name="req_contact_no" required/>
+                                <input type="number" id="number" placeholder="Enter Phone No..." class="validate"
+                                       name="contact_no"
+                                       required/>
                                 <label for="number">Contact Number</label>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="input-field col s12 m6 l6">
+                                <i class="material-icons prefix">person_pin</i>
+                                <select id="line_mgr" name="line_mgr" required>
+                                    <option value="" disabled selected>Choose your Approver</option>
+                                    <option value="John Doe">John Doe</option>
+                                    <option value="Michael Marsh">Michael Marsh</option>
+                                    <option value="Rick Grimes">Rick Grimes</option>
+                                </select>
+                                <label>Line Manager</label>
+                            </div>
+                            <div class="input-field col s12 m6 l6">
+                                <i class="material-icons prefix">supervisor_account</i>
+                                <select id="alt_line_mgr" name="alt_line_mgr" required>
+                                    <option value="" disabled selected>Choose your Alternate Approver
+                                    </option>
+                                    <option value="Ruwan">Ruwan</option>
+                                    <option value="Ponting">Michael Marsh</option>
+                                    <option value="Kumar">Kumar</option>
+                                </select>
+                                <label>Alternate Line Manager</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6 l12">
                                 <i class="material-icons prefix">work</i>
                                 <select id="dept_name" name="dept_name" required>
                                     <option value="" disabled selected>Select your Department</option>
@@ -223,29 +175,19 @@ if (!isLoggedIn()) {
                                 </select>
                                 <label>Department Name</label>
                             </div>
-                            <div class="input-field col s12 m6 l6">
-                                <i class="material-icons prefix">attach_money</i>
-                                <select id="cost_center" name="cost_center" required>
-                                    <option value="" disabled selected>Select your CRG</option>
-                                    <option value="250">250</option>
-                                    <option value="269">269</option>
-                                    <option value="200">200</option>
-                                </select>
-                                <label>Cost Center</label>
-                            </div>
                         </div>
                         <h5>Room Details</h5>
                         <hr/>
                         <div class="row">
                             <div class="input-field col s12 m6 l6">
                                 <i class="material-icons prefix">hotel</i>
-                                <input type="date" id="date" name="check_in" class="datepicker" required/>
-                                <label for="employee_name">Arrival</label>
+                                <input type="text" id="date" name="check_in" class="datepicker" required/>
+                                <label for="check_in">Check in</label>
                             </div>
                             <div class="input-field col s6 m6 l6">
                                 <i class="material-icons prefix">hotel</i>
-                                <input type="date" id="date" name="check_out" class="datepicker" required/>
-                                <label for="employee_name">Departure</label>
+                                <input type="text" id="date" name="check_out" class="datepicker" required/>
+                                <label for="check_out">Check Out</label>
                             </div>
                             <div class="input-field col s12 m6 l4">
                                 <i class="material-icons prefix">people_outline</i>
@@ -298,17 +240,25 @@ if (!isLoggedIn()) {
                                 <label for="textarea1">Travel Description</label>
                             </div>
                         </div>
-                        <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
-                            <i class="material-icons right">check</i>
-                        </button>
-                        <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
-                            <i class="material-icons right">clear</i>
-                        </button>
-                </form>
+                        <div class="center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
+                                <i class="material-icons right">check</i>
+                            </button>
+                            <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
+                                <i class="material-icons right">clear</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Section : Footer -->
+<footer class="section cyan darken-1 white-text center">
+    <p class="flow-text">Corp Travel 2019 &copy; 2019</p>
+</footer>
 
 <!-- Chatbot -->
 <?php include '../../chat.php' ?>
@@ -320,13 +270,13 @@ if (!isLoggedIn()) {
     // Side Nav
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
-    //            $('.datepicker').datepicker({
-    //                disableWeekends: true,
-    //                yearRange: 1
-    //            });
-    //            $(document).ready(function() {
-    //                $('.timepicker').timepicker();
-    //            });
+    $('.datepicker').datepicker({
+        disableWeekends: true,
+        yearRange: 1
+    });
+    $(document).ready(function () {
+        $('.timepicker').timepicker();
+    });
 
     $(document).ready(function () {
         $('select').formSelect();
@@ -334,34 +284,6 @@ if (!isLoggedIn()) {
     $(document).ready(function () {
         $('textarea#textarea1').characterCounter();
     });
-
-    // //Add User Code
-    // $(document).ready(function() {
-    //     var maxField = 10; //Input fields increment limitation
-    //     var addButton = $('.add_button'); //Add button selector
-    //     var wrapper = $('.addUser'); //Input field wrapper
-    //     var fieldHTML =
-    //         '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="btn-floating blue pulse prefix remove_button"><i class="material-icons">add</i>'; //New input field html
-    //     var x = 1; //Initial field counter is 1
-
-    //     //Once add button is clicked
-    //     $(addButton).click(function() {
-    //         //Check maximum number of input fields
-    //         if (x < maxField) {
-    //             x++; //Increment field counter
-    //             $(wrapper).append(fieldHTML); //Add field html
-    //         }
-    //     });
-
-    //     //Once remove button is clicked
-    //     $(wrapper).on('click', '.remove_button', function(e) {
-    //         e.preventDefault();
-    //         $(this)
-    //             .parent('div')
-    //             .remove(); //Remove field html
-    //         x--; //Decrement field counter
-    //     });
-    // });
 </script>
 </body>
 

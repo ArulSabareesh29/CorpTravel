@@ -32,6 +32,7 @@ if (isset($_POST['submit_btn'])) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
         echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -202,20 +203,15 @@ if (!isLoggedIn()) {
                             <input type="text" id="date" name="flight_date" class="datepicker" required/>
                             <label for="flight_date">Flight Date</label>
                         </div>
-<!--                        <div class="input-field col s6 m6">-->
-<!--                            <i class="material-icons prefix">place</i>-->
-<!--                            <input type="text" id="date" name="drop_point" class="datepicker" required/>-->
-<!--                            <label for="employee_name">Drop Point</label>-->
-<!--                        </div>-->
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">timer</i>
                             <input type="text" id="date" name="journey_start_time" class="timepicker" required/>
-                            <label for="employee_name">Flight Arrival Time</label>
+                            <label for="journey_start_time">Flight Arrival Time</label>
                         </div>
                         <div class="input-field col s6 m6">
                             <i class="material-icons prefix">timer</i>
                             <input type="text" id="date" name="journey_end_time" class="timepicker" required/>
-                            <label for="employee_name">Flight Departure Time</label>
+                            <label for="journey_end_time">Flight Departure Time</label>
                         </div>
                         <div class="input-field col s12 m12">
                             <i class="material-icons prefix">message</i>
@@ -225,12 +221,14 @@ if (!isLoggedIn()) {
                             <label for="textarea1">Travel Description</label>
                         </div>
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
-                        <i class="material-icons right">check</i>
-                    </button>
-                    <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
-                        <i class="material-icons right">clear</i>
-                    </button>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="submit_btn">Submit
+                            <i class="material-icons right">check</i>
+                        </button>
+                        <button class="btn waves-effect waves-light" type="rest" name="submit_btn">Reset
+                            <i class="material-icons right">clear</i>
+                        </button>
+                    </div>
             </div>
             </form>
         </div>
@@ -238,6 +236,10 @@ if (!isLoggedIn()) {
     </div>
 </section>
 
+<!-- Section : Footer -->
+<footer class="section cyan darken-1 white-text center">
+    <p class="flow-text">Corp Travel 2019 &copy; Designed by Arul Sabareesh</p>
+</footer>
 <!-- Chatbot -->
 <?php include '../../chat.php' ?>
 

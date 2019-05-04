@@ -96,7 +96,7 @@ include 'admin/functions.php';
 <section class="slider">
     <ul class="slides">
         <li>
-            <img  class="slideShow "src="https://image.ibb.co/hbEMux/resort1.jpg"/>
+            <img  class="slideShow "src="img/resort1.jpg"/>
             <!-- random image -->
             <div class="caption center-align">
                 <h3>Book Your Travel!</h3>
@@ -108,7 +108,7 @@ include 'admin/functions.php';
         </li>
         <li>
             <img
-                    src="https://cdn.pixabay.com/photo/2015/05/01/14/46/new-york-748595_960_720.jpg"/>
+                    src="img/slider2.jpg"/>
             <!-- random image -->
             <div class="caption left-align">
                 <h3>We Work with all Budgets</h3>
@@ -121,12 +121,12 @@ include 'admin/functions.php';
         </li>
         <li>
             <img
-                    src="https://cdn.pixabay.com/photo/2015/01/20/13/13/ipad-605439_1280.jpg"/>
+                    src="img/slider3.jpg"/>
             <!-- random image -->
             <div class="caption right-align">
-                <h3>Group & Individual Getaways</h3>
+                <h3>Manage Bookings in Dashboard</h3>
                 <h5 class="light grey-text text-lighten-3">
-                    Here's our small slogan.
+                    Admin will have access to its own dashbaord to manage bookings & approvals.
                 </h5>
             </div>
         </li>

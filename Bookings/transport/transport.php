@@ -71,7 +71,7 @@ if (isset($_POST['submit_btn'])) {
                         <a href="#menu">Menu</a>
                     </li>
                     <li id="myBookings">
-                        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
+                        <a href="../../dashboard/bookings_summary.php" target="_blank">My Bookings</a>
                     </li>
                     <li id="contact">
                         <a href="#contact">Contact Us</a>
@@ -92,7 +92,7 @@ if (isset($_POST['submit_btn'])) {
         <a href="#menu">Menu</a>
     </li>
     <li id="myBookings">
-        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
+        <a href="../../dashboard/bookings_summary.php" target="_blank">My Bookings</a>
     </li>
     <li id="contact">
         <a href="#contact">Contact Us</a>
@@ -112,7 +112,7 @@ if (isset($_POST['submit_btn'])) {
         </h5>
 
         <br/><br/>
-        <a href="#transportType" class="btn btn-large light-blue white-text">Book Now</a>
+        <a href="#transportType" class="btn btn-large light-blue white-text">Get Started</a>
     </div>
 </div>
 
@@ -133,7 +133,7 @@ if (isset($_POST['submit_btn'])) {
                 Your daily office related transport such as factory visits, workshops and home transport can be booked
                 here.
             </p>
-            <a href="transportform.php" class="btn btn-small light-blue white-text">Book Now</a>
+            <a href="transportform.php" target="_blank" class="btn btn-small light-blue white-text">Book Now</a>
         </div>
     </div>
     <div class="row">
@@ -147,7 +147,7 @@ if (isset($_POST['submit_btn'])) {
             <p>
                 Transport for office staff, project related parties from other companies can be booked here
             </p>
-            <a href="airportForm.php" class="btn btn-small light-blue white-text">Book Now</a>
+            <a href="airportForm.php" target="_blank" class="btn btn-small light-blue white-text">Book Now</a>
         </div>
     </div>
     <div class="row">
@@ -161,7 +161,7 @@ if (isset($_POST['submit_btn'])) {
             <p>
                 Late night transport for employees to ensure a safe drive home
             </p>
-            <a href="nightTaxi.php" class="btn btn-small light-blue white-text">Book Now</a>
+            <a href="nightTaxi.php" target="_blank" class="btn btn-small light-blue white-text">Book Now</a>
         </div>
     </div>
 </section>

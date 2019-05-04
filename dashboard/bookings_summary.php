@@ -163,11 +163,11 @@ if (!isLoggedIn()) {
                     <th>Contact No</th>
                     <th>Line Manager</th>
                     <th>Alt Line Manager</th>
-                    <th>Requestor first Name</th>
-                    <th>Requestor Last Name</th>
-                    <th>Email</th>
-                    <th>Requestor Contact No.</th>
-                    <th>Dept. Name</th>
+                    <th>Department</th>
+                    <th>Pickup Location</th>
+                    <th>Drop Location</th>
+                    <th>Journey Start Date</th>
+                    <th>Journey End Date</th>
                     <th>Approval Status</th>
                 </tr>
                 </thead>
@@ -199,7 +199,7 @@ if (!isLoggedIn()) {
                                 <form class="form-horizontal" action="<?php $_PHP_SELF ?>">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label for="usr">Passanger name:</label>
+                                            <label for="usr">Passenger name:</label>
                                             <input type="text" class="form-control"
                                                    placeholder="<?php echo $row['passenger_name'] ?>"
                                                    value="<?php echo $row['passenger_name'] ?>" disabled>
@@ -229,11 +229,11 @@ if (!isLoggedIn()) {
                     <td><center>' . $row['contact_no'] . '</center></td>
                     <td><center><font size="2.4px"><b>' . $row['line_mgr'] . '</b></font></center></td>
                     <td><center>' . $row['alt_line_mgr'] . '</center></td>
-                    <td><center>' . $row['req_first_name'] . '</center></td>
-                    <td><center>' . $row['req_last_name'] . '</center></td>
-                    <td><center>' . $row['email'] . '</center></td>
-                    <td><center>' . $row['req_contact_no'] . '</center></td>
                     <td><center>' . $row['dept_name'] . '</center></td>
+                    <td><center>' . $row['pickup_location'] . '</center></td>
+                    <td><center>' . $row['drop_location'] . '</center></td>
+                    <td><center>' . $row['journey_start'] . '</center></td>
+                    <td><center>' . $row['journey_end'] . '</center></td>
                     <td><center><font color="#f44e42"><strong>' . $row['approval_status'] . '</strong></font></center></td>
 				</tr>';
                             } ?>
