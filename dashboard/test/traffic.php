@@ -1,5 +1,5 @@
 <?php
-include_once "../../admin/db-config.php";
+include_once "../admin/db-config.php";
 
 $sql = "SELECT * FROM user ORDER BY id";
 
@@ -18,7 +18,7 @@ $sql_3 = "SELECT * FROM trans_hotel ORDER BY id";
 if ($result_trans_hotel = mysqli_query($conn, $sql_3)) {
     $rowcount_trans_hotel = mysqli_num_rows($result_trans_hotel);
 }
-include '../../admin/functions.php';
+include '../admin/functions.php';
 
 if (!isLoggedIn()) {
     $_SESSION['msg'] = "You must log in first";
@@ -28,8 +28,7 @@ if (!isLoggedIn()) {
 ?>
 
 <!DOCTYPE html>
-<html>
-<link rel="shortcut icon" href="../../img/LogoV1.png">
+<html></html>
 <title>Corp Travel - Dashboard</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,50 +37,45 @@ if (!isLoggedIn()) {
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/dashboard.css">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<?php
-include("../calculate.php");
-?>
 
-<body class="w3-white">
+<body class="w3-light-grey">
 
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:1000">
     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i
                 class="fa fa-bars"></i>  Menu
     </button>
-    <img src="../../img/title_corp_travel.png" width="12%">
+    <span class="w3-bar-item w3-right">Corp Travel</span>
 </div>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;margin-top: 20px;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" style="width:75px">
+            <img src="../dashboard/assets/img/find_user.jpg" class="w3-circle w3-margin-right" alt="admin_user"
+                 style="width:75px">
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Welcome <strong><?php echo $_SESSION['user']['username']; ?></strong></span><br>
+            <span>Welcome <em><?php echo $_SESSION['user']['username']; ?></em></span><br>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="../../index.php" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
     </div>
-    <hr style="border: 1px solid black;">
-
+    <hr>
     <div class="w3-container">
-        <h5>Bookings</h5>
+        <h5>Dashboard</h5>
     </div>
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="userAccount.php" class="w3-bar-item w3-button w3-padding w3-blue"><i
-                    class="fa fa-users fa-fw"></i> Overview</a>
-        <a href="userTransport.php" class="w3-bar-item w3-button w3-padding"><i
-                    class="fa fa-car fa-fw"></i> Transport</a>
-        <a href="userHotel.php" class="w3-bar-item w3-button w3-padding"><i
-                    class="fas fa-hotel fa-fw"></i> Hotel</a>
-        <a href="userFlight.php" class="w3-bar-item w3-button w3-padding"><i
-                    class="fa fa-plane fa-fw"></i> Flights</a>
+        <a href="../home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+        <a href="../bookings.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
+        <a href="views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
+        <a href="geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
     </div>
 </nav>
@@ -96,16 +90,15 @@ include("../calculate.php");
 
     <!-- Header -->
     <header class="w3-container" style="padding-top:22px">
-        <h5><b><i class="fas fa-users-cog"></i> Corp Travel Dashboard</b></h5>
+        <h5><b><i class="fas fa-users-cog"></i> My Dashboard</b></h5>
     </header>
-
 
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
             <div class="w3-container w3-red w3-padding-16">
                 <div class="w3-left"><i class="far fa-calendar-check w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3><?php echo date("Y-m-d"); ?></h3>
+                    <h3><?php echo date("Y-m-d-l"); ?></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Current Date</h4>
@@ -142,88 +135,25 @@ include("../calculate.php");
             </div>
         </div>
     </div>
+    <hr>
+    <div class="w3-half">
+        <h4>Hello World</h4>
+    </div>
 
-
-    <!--    <div class="w3-panel">-->
-    <!--        <hr style="border: 1px solid black;">-->
-    <!--        <div class="w3-row-padding" style="margin:0 -16px">-->
-    <!--            <div class="w3-third">-->
-    <!--                <div id="map" style="width:100%;height:200px;"></div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
-    <!--Pie Chart-->
-    <div class="w3-panel">
-        <hr style="border: 1px solid black;">
-        <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-                <div id="piechart" style="width: 720px; height: 500px;"></div>
-
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages': ['corechart']});
-                    google.charts.setOnLoadCallback(drawChart);
-
-                    function drawChart() {
-
-                        var data = google.visualization.arrayToDataTable([
-                            ['Task', 'Hours per Day'],
-                            ['Employees',    <?php echo $numberOfEUserRows;?> ],
-                            ['Vendors',     <?php echo $numberOfVenUserRows;?> ],
-                            ['Admin',   <?php echo $numberOfAdUserRows;?> ]
-                        ]);
-
-                        var options = {
-                            title: 'CorpTravel Users',
-                            legend: 'bottom'
-                        };
-
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-                        chart.draw(data, options);
-                    }
-                </script>
-            </div>
-            <div class="w3-half w3-right-align">
-                <div class="w3-responsive">
-                    <table class="w3-table-all">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Points</th>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="w3-half">
+        <h4> Hi </h4>
     </div>
 
 
 
 
     <!-- Footer -->
-    <!--    <footer class="footer w3-container w3-teal ">-->
-    <!--        <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>-->
-    <!--    </footer>-->
+    <footer class="footer w3-container w3-teal">
+        <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>
+    </footer>
     <!-- End page content -->
+
 </div>
-
-
 <script>
     // Get the Sidebar
     var mySidebar = document.getElementById("mySidebar");
@@ -249,6 +179,7 @@ include("../calculate.php");
     }
 
     <!-- Js code for map -->
+
     function myMap() {
         var map = new google.maps.Map(
             document.getElementById('map'),

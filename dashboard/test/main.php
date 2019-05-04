@@ -78,9 +78,9 @@ include("calculate.php");
                 class="fa fa-users fa-fw"></i> Overview</a>
         <a href="../bookings.php" class="w3-bar-item w3-button w3-padding"><i
                 class="fa fa-book-open fa-fw"></i> Bookings</a>
-        <a href="../views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-        <a href="../traffic.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-        <a href="../geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
+        <a href="views.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
+        <a href="traffic.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
+        <a href="geo.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
         <a href="reports.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Reports</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>

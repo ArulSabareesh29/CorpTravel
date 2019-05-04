@@ -141,7 +141,7 @@ if (!isLoggedIn()) {
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
     </div>
-    <hr style="border: 1px solid black;">
+    <hr>
     <div class="w3-container">
         <h5>Dashboard</h5>
     </div>
@@ -209,10 +209,59 @@ if (!isLoggedIn()) {
             </div>
         </div>
     </div>
-    <hr style="border: 1px solid black;">
-    <div class="w3-container w3-responsive">
-        <h3 class="w3-center">Employee Office Transport Booking</h3>
-        <div class="w3-container">
+    <hr>
+
+    <div class="w3-container">
+        <div class="w3-responsive">
+            <h3 class="w3-center">Types of Bookings</h3>
+            <table id="example" class=" w3-table-all w3-hoverable tbl_border" border="5">
+                <thead>
+                <tr>
+                    <th>
+                        <center>Booking Type</center>
+                    </th>
+                    <th>
+                        <center>Booking Code</center>
+                    </th>
+                    <th>
+                        <center>Status</center>
+                    </th>
+                    <th>
+                        <center>Date and Time</center>
+                    </th>
+                    <th>
+                        <center>Time of Booking</center>
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <?php
+
+                $sql = "SELECT * FROM booking";
+
+                $query = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_array($query)) {
+                    ?>
+
+                    <?php
+                    echo '<tr>
+                    <td><center>' . $row['booking_type'] . '</center></td>
+                    <td><center>' . $row['booking_code'] . '</center></td>
+                    <td><center><font size="3px"><b>' . $row['status'] . '</b></font></center></td>
+                    <td><center>' . $row['date_time'] . '</center></td>
+                    <td><center>' . $row['timestamp'] . '</center></td>
+				</tr>';
+                } ?>
+                <tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+
+        <div class="w3-container w3-padding">
+            <h3 class="w3-center">User Transport Booking</h3>
             <!--   Transport Booking Details     -->
             <div class="w3-responsive">
                 <table id="user_table" border="1" class=" w3-table-all w3-hoverable">
@@ -225,8 +274,8 @@ if (!isLoggedIn()) {
                     <th>Department</th>
                     <th>Journey Start</th>
                     <th>Journey End</th>
-                    <th>Description</th>
-                    <th>Delete Booking</th>
+                    <th>Timestamp</th>
+                    <th></th>
                     </thead>
                     <tbody>
                     <?php
@@ -260,166 +309,105 @@ if (!isLoggedIn()) {
             </div>
         </div>
     </div>
-    <div class="w3-container w3-responsive">
-        <h3 class="w3-center">Employee Airport Transport Booking</h3>
-        <div class="w3-container">
-            <!--   Transport Booking Details     -->
-            <div class="w3-responsive">
-                <table id="user_table" border="1" class=" w3-table-all w3-hoverable">
-                    <thead>
-                    <th>Booking ID</th>
-                    <th>Passenger Name</th>
-                    <th>Contact No</th>
-                    <th>Line Manager</th>
-                    <th>Department</th>
-                    <th>Flight Date</th>
-                    <th>Journey Start</th>
-                    <th>Journey End</th>
-                    <th>Description</th>
-                    <th>Delete Booking</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                    include_once "../admin/db-config.php";
-                    $query = mysqli_query($conn, "select * from `airport_transport`");
-                    while ($row = mysqli_fetch_array($query)) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['passenger_name']; ?></td>
-                            <td><?php echo $row['contact_no']; ?></td>
-                            <td><?php echo $row['line_mgr']; ?></td>
-                            <td><?php echo $row['dept_name']; ?></td>
-                            <td><?php echo $row['flight_date']; ?></td>
-                            <td><?php echo $row['journey_start_time']; ?></td>
-                            <td><?php echo $row['journey_end_time']; ?></td>
-                            <td><?php echo $row['description']; ?></td>
-                            <td>
-                                <center>
-                                    <a href="delete_airportbooking.php?id=<?php echo $row['id']; ?>">
-                                        <button class="w3-btn w3-red" onclick="del_msg()">Delete</button>
-                                    </a>
-                                </center>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="w3-container w3-responsive">
-        <h3 class="w3-center">Night Taxi Transport Booking</h3>
-        <div class="w3-container">
-            <!--   Transport Booking Details     -->
-            <div class="w3-responsive">
-                <table id="user_table" border="1" class=" w3-table-all w3-hoverable">
-                    <thead>
-                    <th>Booking ID</th>
-                    <th>Passenger Name</th>
-                    <th>Contact No</th>
-                    <th>Line Manager</th>
-                    <th>Department</th>
-                    <th>Pickup Location</th>
-                    <th>Drop Location</th>
-                    <th>Journey Start Time</th>
-                    <th>Journey End Time</th>
-                    <th>Description</th>
-                    <th>Delete Booking</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                    include_once "../admin/db-config.php";
-                    $query = mysqli_query($conn, "select * from `night_taxi`");
-                    while ($row = mysqli_fetch_array($query)) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['passenger_name']; ?></td>
-                            <td><?php echo $row['contact_no']; ?></td>
-                            <td><?php echo $row['line_mgr']; ?></td>
-                            <td><?php echo $row['dept_name']; ?></td>
-                            <td><?php echo $row['pickup_location']; ?></td>
-                            <td><?php echo $row['drop_location']; ?></td>
-                            <td><?php echo $row['journey_start_time']; ?></td>
-                            <td><?php echo $row['journey_end_time']; ?></td>
-                            <td><?php echo $row['description']; ?></td>
-                            <td>
-                                <center>
-                                    <a href="delete_nightTaxibooking.php?id=<?php echo $row['id']; ?>">
-                                        <button class="w3-btn w3-red" onclick="del_msg()">Delete</button>
-                                    </a>
-                                </center>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <br>
+    <div class="w3-container w3-padding w3-responsive">
+        &nbsp; <h3 class="w3-center">User Transport Booking - Approval</h3>
+        <table class="data-table" class=" w3-table-all w3-hoverable">
+            <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Passenger Name</th>
+                <th>Contact No</th>
+                <th>Line Manager</th>
+                <th>Alt Line Manager</th>
+                <th>Dept. Name</th>
+                <th>Journey Start</th>
+                <th>Journey End</th>
+                <th>Pickup Location</th>
+                <th>Drop Location</th>
+                <th>Approve/Decline</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+
+            $sql = "SELECT * FROM `trans_transport` WHERE `approval_status` NOT LIKE 'Approved'";
+
+            $query = mysqli_query($conn, $sql);
+
+            while ($row = mysqli_fetch_array($query))
+            {
+            ?>
     </div>
 
-    <div class="w3-container w3-responsive">
-        <h3 class="w3-center">Hotel Booking</h3>
-        <div class="w3-container">
-            <!--   Transport Booking Details     -->
-            <div class="w3-responsive">
-                <table id="user_table" border="1" class=" w3-table-all w3-hoverable">
-                    <thead>
-                    <th>Booking ID</th>
-                    <th>Employee Name</th>
-                    <th>Contact No</th>
-                    <th>Line Manager</th>
-                    <th>Department</th>
-                    <th>Check In</th>
-                    <th>Check Out</th>
-                    <th>Number of People</th>
-                    <th>Number of Rooms</th>
-                    <th>Room Type</th>
-                    <th>Description</th>
-                    <th>Delete Booking</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                    include_once "../admin/db-config.php";
-                    $query = mysqli_query($conn, "select * from `trans_hotel`");
-                    while ($row = mysqli_fetch_array($query)) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['employee_name']; ?></td>
-                            <td><?php echo $row['contact_no']; ?></td>
-                            <td><?php echo $row['line_mgr']; ?></td>
-                            <td><?php echo $row['dept_name']; ?></td>
-                            <td><?php echo $row['check_in']; ?></td>
-                            <td><?php echo $row['check_out']; ?></td>
-                            <td><?php echo $row['no_people']; ?></td>
-                            <td><?php echo $row['no_rooms']; ?></td>
-                            <td><?php echo $row['room_type']; ?></td>
-                            <td><?php echo $row['description']; ?></td>
-                            <td>
-                                <center>
-                                    <a href="delete_hotelbooking.php?id=<?php echo $row['id']; ?>">
-                                        <button class="w3-btn w3-red" onclick="del_msg()">Delete</button>
-                                    </a>
-                                </center>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                    </tbody>
-                </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal<?php echo $row['id'] ?>" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <strong>
+                            <h3>Booking Approval Form</h3>
+                        </strong>
+                    </center>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="<?php $_PHP_SELF ?>">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="usr">Passanger name:</label>
+                                <input type="text" class="form-control"
+                                       placeholder="<?php echo $row['passenger_name'] ?>"
+                                       value="<?php echo $row['passenger_name'] ?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Approval Status:</label>
+                                <select class="form-control" name="approval_status"
+                                        id="approval_status<?php echo $row['id'] ?>">
+                                    <option value="Approved">Approved</option>
+                                    <option value="Decline">Decline</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="save_update(<?php echo $row['id'] ?>)" name="update"
+                                        class="btn btn-primary">Submit
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <?php
+                echo '<tr>
+					<td><center>' . $row['id'] . '</center></td>
+                    <td>' . $row['passenger_name'] . '</td>
+                    <td><center>' . $row['contact_no'] . '</center></td>
+                    <td><center><font size="2.4px"><b>' . $row['line_mgr'] . '</b></font></center></td>
+                    <td><center>' . $row['alt_line_mgr'] . '</center></td>
+                    <td><center>' . $row['dept_name'] . '</center></td>
+                    <td><center>' . $row['journey_start'] . '</center></td>
+                    <td><center>' . $row['journey_end'] . '</center></td>
+                    <td><center>' . $row['pickup_location'] . '</center></td>
+                    <td><center>' . $row['drop_location'] . '</center></td>
+                    <td><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal' . $row['id'] . '">Approved</button></td>
+				</tr>';
+                } ?>
+                <tr>
+                </tr>
             </div>
         </div>
     </div>
-    <h3>User Feedbacks</h3>
-    <div class="w3-container">
-        <!--   user feedbacks     -->
+    </tbody>
+    </table>
+    <br>
+    <br>
+
+    <!--   user feedbacks     -->
+    <div class="w3-container w3-padding">
+        <h3>User Feedbacks</h3>
+
         <div class="w3-responsive">
             <table id="example" class=" w3-table-all w3-hoverable">
                 <thead>

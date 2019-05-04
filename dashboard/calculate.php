@@ -31,3 +31,36 @@ $numberOfVenUserRows = mysqli_num_rows($connStatus);
 
 // echo $numberOfAdUserRows;
 ?>
+
+<!-- transport booking count -->
+<?php
+$sql = "SELECT * FROM trans_transport";
+//  mysql_select_db;
+$connStatus = $conn->query($sql);
+
+$numberOfTransBookRows = mysqli_num_rows($connStatus);
+
+// echo $numberOfAdUserRows;
+?>
+
+<!-- hotel booking count -->
+<?php
+$sql = "SELECT * FROM trans_hotel";
+//  mysql_select_db;
+$connStatus = $conn->query($sql);
+
+$numberOfHotelBookRows = mysqli_num_rows($connStatus);
+
+// echo $numberOfAdUserRows;
+?>
+
+<!-- flight booking count -->
+<?php
+$sql = "SELECT * FROM flight_booking";
+//  mysql_select_db;
+$connStatus = $conn->query($sql);
+
+$numberOfFlightBookRows = mysqli_num_rows($connStatus);
+
+// echo $numberOfAdUserRows;
+?>
