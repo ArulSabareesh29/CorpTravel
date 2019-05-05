@@ -83,7 +83,7 @@ if (!isLoggedIn()) {
 
                     </li>
                     <li id="myaccount">
-                        <a href="#account">My Account</a>
+                        <a href="viewhotel.php">My Bookings</a>
                     </li>
                     <li>
                         <a href="../../index.php">Sign Out</a>
@@ -100,7 +100,7 @@ if (!isLoggedIn()) {
         <a href="transport.php">Hi, <?php echo $_SESSION['user']['username']; ?></a>
     </li>
     <li id="myaccount">
-        <a href="#account">My Account</a>
+        <a href="viewhotel.php">My Bookings</a>
     </li>
     <li>
         <a href="../../index.php">Log Out</a>

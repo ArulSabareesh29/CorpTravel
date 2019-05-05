@@ -8,9 +8,20 @@ if (!isLoggedIn()) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-    <head>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="../../css/materialize.min.css"/>
+    <link rel="stylesheet" href="css/hotel.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="img/LogoV1.png">
+    <title>Corp Travel - Hotel</title>
         <link rel="shortcut icon" href="../images/title.png">
         <title>Corp Travel</title>
         <style>
@@ -58,81 +69,109 @@ if (!isLoggedIn()) {
         </style>
     </head>
 
-    <body>
-        <br><br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div>
-            <center>
-                <h2><U></U></h2>
-            </center>
-            <table id="user_table" border="1">
-                <thead>
-                    <th>Id </th>
-                    <th>First Name</th>
-                    <th>Contact No.</th>
-                    <th>Approver</th>
-                    <th>Requestor Name</th>
-                    <th>Requestor Mail</th>
-                    <th>Requestor Contact No.</th>
-                    <th>Requestor Department</th>
-                    <th>Check In</th>
-                    <th>Check Out</th>
-                    <th>No. of Persons</th>
-                    <th>No. of Rooms</th>
-                    <th>Room Type</th>
-                    <th>Travel Description</th>
-                </thead>
-                <tbody id="myTable">
-                    <?php
-                    include '../../admin/db-config.php';
-                    $query = mysqli_query($conn, "select * from `trans_hotel` where `employee_name` = '".$_SESSION['user']['username']."' ");
-                    while ($row = mysqli_fetch_array($query)) {
-                    ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['employee_name']; ?></td>
-                        <td><?php echo $row['contact_no']; ?></td>
-                        <td><?php echo $row['line_mgr']; ?></td>
-                        <td><?php echo $row['req_first_name']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['req_contact_no']; ?></td>
-                        <td><?php echo $row['dept_name']; ?></td>
-                        <td><?php echo $row['check_in']; ?></td>
-                        <td><?php echo $row['check_out']; ?></td>
-                        <td><?php echo $row['no_people']; ?></td>
-                        <td><?php echo $row['no_rooms']; ?></td>
-                        <td><?php echo $row['room_type']; ?></td>
-                        <td><?php echo $row['description']; ?></td>
-                    </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-            <br>
-            <a href="../../admin/home.php"><button class="button" type="button">CLOSE</button></a>
-            <a href="#"><button class="button" type="button" onclick="print_out();">Print</button></a>
+<body>
+<nav class="cyan darken-1">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="../../menu/menu.php" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
+            <a href="../../menu/menu.php" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+
+                </li>
+                <li>
+                    <a href="../../index.php">Sign Out</a>
+                </li>
+            </ul>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $("#myInput").on("keyup", function() {
-                    var value = $(this).val().toLowerCase();
-                    $("#myTable tr").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
+    </div>
+</nav>
+</div>
+<!-- Side Navigation: Mobile View -->
+<ul class="sidenav" id="mobile-nav">
+    <li>
+        <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+    </li>
+    <li>
+        <a href="#account">My Bookings</a>
+    </li>
+    <li id="contact">
+        <a href="#contact">Feedback</a>
+    </li>
+    <li>
+        <a href="../../index.php">Sign Out</a>
+    </li>
+</ul>
+<div>
+    <center>
+        <h4> <?php echo $_SESSION['user']['username']; ?>'s Hotel Bookings</h4>
+    </center>
+    <table id="user_table" border="1">
+        <thead>
+        <th>Id</th>
+        <th>Employee Name</th>
+        <th>Contact No.</th>
+        <th>Approver</th>
+        <th>Department</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>No. of Persons</th>
+        <th>No. of Rooms</th>
+        <th>Room Type</th>
+        <th>Description</th>
+        </thead>
+        <tbody id="myTable">
+        <?php
+        include '../../admin/db-config.php';
+        $query = mysqli_query($conn, "select * from `trans_hotel` where `employee_name` = '" . $_SESSION['user']['username'] . "' ");
+        while ($row = mysqli_fetch_array($query)) {
+            ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['employee_name']; ?></td>
+                <td><?php echo $row['contact_no']; ?></td>
+                <td><?php echo $row['line_mgr']; ?></td>
+                <td><?php echo $row['dept_name']; ?></td>
+                <td><?php echo $row['check_in']; ?></td>
+                <td><?php echo $row['check_out']; ?></td>
+                <td><?php echo $row['no_people']; ?></td>
+                <td><?php echo $row['no_rooms']; ?></td>
+                <td><?php echo $row['room_type']; ?></td>
+                <td><?php echo $row['description']; ?></td>
+            </tr>
+            <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <br>
+    <a href="hotel.php">
+        <button class="button" type="button">Close</button>
+    </a>
+    <a href="#">
+        <button class="button" type="button" onclick="print_out();">Print</button>
+    </a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-        </script>
-        <!--  js code for print-->
-        <script>
-            function print_out() {
-                window.print();
-            }
-        </script>
-    </body>
+        });
+    });
+</script>
+<!--  js code for print-->
+<script>
+    function print_out() {
+        window.print();
+    }
+</script>
+</body>
 
 </html>

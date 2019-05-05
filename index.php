@@ -22,6 +22,8 @@ if (isset($_POST['submit_btn'])) {
     if (!empty($result)) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
+        echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -96,11 +98,11 @@ include 'admin/functions.php';
 <section class="slider">
     <ul class="slides">
         <li>
-            <img  class="slideShow "src="img/resort1.jpg"/>
+            <img class="slideShow " src="img/resort1.jpg"/>
             <!-- random image -->
             <div class="caption center-align">
                 <h3>Book Your Travel!</h3>
-                <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+                <h5 class="light grey-text text-lighten-5 hide-on-small-only">
                     Corp Travel provides the assistance for your company to book any form of corporate travel and
                     hospitality with ease.
                 </h5>
@@ -112,21 +114,20 @@ include 'admin/functions.php';
             <!-- random image -->
             <div class="caption left-align">
                 <h3>We Work with all Budgets</h3>
-                <h5 class="light grey-text text-lighten-3 hide-on-small-only">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                    laborum illum quibusdam magni officia repudiandae in reprehenderit
-                    necessitatibus voluptatem eum?
+                <h5 class="light grey-text text-lighten-5 hide-on-small-only">
+                    Corp Travel provides the assistance for your company to book any form of Travel and hospitality at
+                    affordable prices.
                 </h5>
             </div>
         </li>
         <li>
             <img
-                    src="img/slider3.jpg"/>
+                    src="img/dashboard1.jpeg"/>
             <!-- random image -->
             <div class="caption right-align">
                 <h3>Manage Bookings in Dashboard</h3>
-                <h5 class="light grey-text text-lighten-3">
-                    Admin will have access to its own dashbaord to manage bookings & approvals.
+                <h5 class="light grey-text text-lighten-5">
+                    Corp Travel provides the admin with access to its very own dashbaord to manage bookings & approvals.
                 </h5>
             </div>
         </li>
@@ -267,19 +268,23 @@ include 'admin/functions.php';
                     <div class="card-panel white lighten-3">
                         <h5>Please Fill out this form</h5>
                         <div class="input-field">
-                            <input type="text" placeholder="Name" name="feedback_name"/>
+                            <i class="material-icons prefix">perm_identity</i>
+                            <input type="text" placeholder="Name" name="feedback_name" required/>
                         </div>
                         <div class="input-field">
-                            <input type="email" placeholder="Email" name="feedback_email"/>
+                            <i class="material-icons prefix">email</i>
+                            <input type="email" placeholder="Email" name="feedback_email" required/>
                         </div>
                         <div class="input-field">
-                            <input type="number" placeholder="Phone" name="feedback_phone"/>
+                            <i class="material-icons prefix">phone_android</i>
+                            <input type="number" placeholder="Phone" name="feedback_phone" required/>
                         </div>
                         <div class="input-field">
-                                <textarea
-                                        class="materialize-textarea"
-                                        placeholder="Message" name="feedback_message"
-                                ></textarea>
+                            <i class="material-icons prefix">business_center</i>
+                            <textarea
+                                    class="materialize-textarea"
+                                    placeholder="Message" name="feedback_message" required
+                            ></textarea>
                         </div>
                         <button class="cyan darken-1 btn" type="submit" name="submit_btn"> Submit</button>
                     </div>

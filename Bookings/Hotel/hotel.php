@@ -21,6 +21,8 @@ if (isset($_POST['submit_btn'])) {
     if (!empty($result)) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
+        echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -44,22 +46,28 @@ if (isset($_POST['submit_btn'])) {
     <link rel="shortcut icon" href="img/LogoV1.png">
     <title>Corp Travel - Hotel</title>
 </head>
-<body>
+<body id="home" class="scrollspy">
 <div class="navbar-fixed">
     <nav class="cyan darken-1">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="../../menu/menu.php" class="brand-logo">Corp Travel</a>
+                <a href="../../menu/menu.php" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
                 <a href="../../menu/menu.php" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+                        <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
 
                     </li>
                     <li id="myaccount">
-                        <a href="viewhotel.php">View Bookings</a>
+                        <a href="viewhotel.php">My Bookings</a>
+                    </li>
+                    <li id="menu">
+                        <a href="../../menu/menu.php">Menu</a>
+                    </li>
+                    <li id="contact">
+                        <a href="#contact">Feedback</a>
                     </li>
                     <li>
                         <a href="../../index.php">Sign Out</a>
@@ -72,34 +80,36 @@ if (isset($_POST['submit_btn'])) {
 <!-- Side Navigation: Mobile View -->
 <ul class="sidenav" id="mobile-nav">
     <li>
-        <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+        <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
     </li>
     <li>
-        <a href="#account">View Bookings</a>
+        <a href="viewhotel.php">My Bookings</a>
+    </li>
+    <li id="menu">
+        <a href="../../menu/menu.php">Menu</a>
+    </li>
+    <li id="contact">
+        <a href="#contact">Feedback</a>
     </li>
     <li>
-        <a href="../../index.html">Sign Out</a>
+        <a href="../../index.php">Sign Out</a>
     </li>
 </ul>
 
-<!-- <h3 class="center align">Transport Services</h3> -->
-
+<!--Showcase-->
 <div class="row showcase">
     <div class="col s12 m10 offset-m1 center">
         <h2 class="white-text">Hotel Booking</h2>
         <h5 class="white-text">
             Any Type of Hospitality Needs for Employees could be booked here
         </h5>
-        <!-- <p class="white-text">
-Any Transport needs could be booked here
-</p> -->
         <br/><br/>
-        <a href="#" class="btn btn-large light-blue white-text">Get Booking</a>
+        <a href="#hotelType" class="btn btn-large light-blue white-text">Get Started</a>
     </div>
 </div>
 
 <!-- Types of Hotel -->
-<section>
+<section id="hotelType" class="scrollspy">
     <div class="container">
         <div class="row">
 
@@ -124,7 +134,7 @@ Any Transport needs could be booked here
                         <div class="card-content">
                             <span class="card-title"><?php echo $row['hotel_name']; ?></span>
                             <h6>Type - <?php echo $row['hotel_type']; ?></h6>
-                            <h6>Price (Est) - xx</h6>
+                            <h6>Price - LKR: <?php echo $row['single_room']; ?></h6>
                             <h6>Rating</h6>
                         </div>
                         <div class="card-action">
@@ -135,24 +145,24 @@ Any Transport needs could be booked here
 
                 <div id="modal1" class="modal">
                     <div class="modal-content">
-                        <h5>Citrus</h5>
+                        <h5>Hotel Agreement</h5>
                         <p>
-                            Citrus Leisure PLC is a public quoted company which entered
+                            Corp Travel PLC is a public quoted company which entered
                             the leisure industry with a commitment to build and manage a
                             chain of distinctive hotels and resorts that are benchmarked
-                            against the most coveted in the world. Citrus intends to
+                            against the most coveted in the world. Corp Travel intends to
                             provide the most exceptional and memorable hospitality in
                             Sri Lanka by exceeding guest expectations and by creating a
                             travel experience like no other.
                         </p>
                         <br/>
                         <p>
-                            By Requesting to book for Citrus you are agreeing with the
+                            By Requesting to book you are agreeing with the
                             companies Hospitality Policy
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <a href="hotelform.php" class="modal-close waves-effect waves-green btn-flat">Agree & Request
+                        <a href="hotelform.php" target="_blank" class="modal-close waves-effect waves-green btn-flat">Agree & Request
                             Booking</a>
                     </div>
                 </div>
@@ -242,7 +252,7 @@ Any Transport needs could be booked here
     });
 </script>
 
-<!--        disable copy and paste -->
+<!-- Disable copy and paste -->
 <script type="text/JavaScript">
     //courtesy of BoogieJack.com
     function killCopy(e) {
@@ -258,6 +268,10 @@ Any Transport needs could be booked here
         document.onmousedown = killCopy
         document.onclick = reEnable
     }
+
+    //ScrollSpy
+    const ss = document.querySelectorAll('.scrollspy');
+    M.ScrollSpy.init(ss, {});
 </script>
 <!--        js code ends here-->
 

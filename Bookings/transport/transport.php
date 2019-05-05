@@ -28,6 +28,8 @@ if (isset($_POST['submit_btn'])) {
     if (!empty($result)) {
         $error_message = "";
         $success_message = "Successfully Submitted!";
+        echo '<script type="text/javascript">alert("Successfully Submitted!");</script>';
+        header("Refresh:0");
         unset($_POST);
     } else {
         $error_message = "Problem is occurred. Please Try Again!";
@@ -59,8 +61,7 @@ if (isset($_POST['submit_btn'])) {
         <div class="container">
             <div class="nav-wrapper">
                 <a href="../../menu/menu.php" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
-
-                <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <a href="../../menu/menu.php" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down">
@@ -68,7 +69,7 @@ if (isset($_POST['submit_btn'])) {
                         <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
                     </li>
                     <li id="menu">
-                        <a href="#menu">Menu</a>
+                        <a href="../../menu/menu.php">Menu</a>
                     </li>
                     <li id="myBookings">
                         <a href="../../dashboard/bookings_summary.php" target="_blank">My Bookings</a>
@@ -86,13 +87,13 @@ if (isset($_POST['submit_btn'])) {
 </div>
 <ul class="sidenav" id="mobile-nav">
     <li>
-        <a href="transport.php">Hi, <?php echo $_SESSION['user']['username']; ?></a>
-    </li>
-    <li id="menu">
-        <a href="#menu">Menu</a>
+        <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
     </li>
     <li id="myBookings">
         <a href="../../dashboard/bookings_summary.php" target="_blank">My Bookings</a>
+    </li>
+    <li id="menu">
+        <a href="../../menu/menu.php">Menu</a>
     </li>
     <li id="contact">
         <a href="#contact">Contact Us</a>
@@ -177,7 +178,7 @@ if (isset($_POST['submit_btn'])) {
 <section class="section container scrollspy" id="contact">
     <div class="row">
         <div class="col s12 l5">
-            <h2 class="blue-text text-darken-4">Feedback</h2>
+            <h2 class="blue-text text-darken-4">Contact Us</h2>
             <p>
                 Corp Travel ensures every user in the company has a great experience in using this site.
             </p>
@@ -251,11 +252,12 @@ if (isset($_POST['submit_btn'])) {
         direction: 'top',
         hoverEnabled: false
     });
-</script>
 
-<!--        disable copy and paste -->
-<script type="text/JavaScript">
-    //courtesy of BoogieJack.com
+    //ScrollSpy
+    const ss = document.querySelectorAll('.scrollspy');
+    M.ScrollSpy.init(ss, {});
+
+    <!--Disable copy and paste -->
     function killCopy(e) {
         return false
     }
@@ -269,11 +271,51 @@ if (isset($_POST['submit_btn'])) {
         document.onmousedown = killCopy
         document.onclick = reEnable
     }
-    //ScrollSpy
-    const ss = document.querySelectorAll('.scrollspy');
-    M.ScrollSpy.init(ss, {});
+    <!--Auto logout functionality-->
+    var IDLE_TIMEOUT = 10; //seconds
+    var _idleSecondsCounter = 0;
+    document.onclick = function () {
+        _idleSecondsCounter = 0;
+    };
+    document.onmousemove = function () {
+        _idleSecondsCounter = 0;
+    };
+    document.onkeypress = function () {
+        _idleSecondsCounter = 0;
+    };
+    window.setInterval(CheckIdleTime, 10000);
+
+    function CheckIdleTime() {
+        _idleSecondsCounter++;
+        var inactivity = document.getElementById("SecondsUntilExpire");
+        if (inactivity)
+            inactivity.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
+        if (_idleSecondsCounter >= IDLE_TIMEOUT) {
+            alert("Your session time have expired! Please login again.");
+            document.location.href = "../../index.php";
+        }
+    }
+
+    <!--Disable the Inspect element-->
+    document.onkeydown = function (e) {
+        if (event.keyCode == 123) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+            return false;
+        }
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+            return false;
+        }
+    }
+
 </script>
-<!--        js code ends here-->
 
 </body>
 

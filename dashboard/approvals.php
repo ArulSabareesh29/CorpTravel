@@ -7,7 +7,7 @@ if ($result = mysqli_query($conn, $sql)) {
     $rowcount = mysqli_num_rows($result);
 }
 
-$sql_2 = "SELECT * FROM booking ORDER BY booking_id";
+$sql_2 = "SELECT * FROM trans_transport ORDER BY id";
 
 if ($result_booking = mysqli_query($conn, $sql_2)) {
     $rowcount_booking = mysqli_num_rows($result_booking);
@@ -135,7 +135,7 @@ if (!isLoggedIn()) {
                  style="width:95px">
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Welcome <em><?php echo $_SESSION['user']['username']; ?></em></span><br>
+            <span>Welcome <strong><?php echo $_SESSION['user']['username']; ?></strong></span><br>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -151,6 +151,9 @@ if (!isLoggedIn()) {
         <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
         <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
         <a href="approvals.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Approvals</a>
+        <a href="../menu/menu.php" target="_blank" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Book Now</a>
+        <a href="../index.php"  class="w3-bar-item w3-button w3-padding"><i
+                    class="fas fa-sign-out-alt fa-fw"></i>  Log Out</a>
     </div>
 </nav>
 
@@ -209,110 +212,9 @@ if (!isLoggedIn()) {
             </div>
         </div>
     </div>
-    <hr>
-
-    <div class="w3-container">
-        <div class="w3-responsive">
-            <h3 class="w3-center">Types of Bookings</h3>
-            <table id="example" class=" w3-table-all w3-hoverable tbl_border" border="5">
-                <thead>
-                <tr>
-                    <th>
-                        <center>Booking Type</center>
-                    </th>
-                    <th>
-                        <center>Booking Code</center>
-                    </th>
-                    <th>
-                        <center>Status</center>
-                    </th>
-                    <th>
-                        <center>Date and Time</center>
-                    </th>
-                    <th>
-                        <center>Time of Booking</center>
-                    </th>
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <?php
-
-                $sql = "SELECT * FROM booking";
-
-                $query = mysqli_query($conn, $sql);
-
-                while ($row = mysqli_fetch_array($query)) {
-                    ?>
-
-                    <?php
-                    echo '<tr>
-                    <td><center>' . $row['booking_type'] . '</center></td>
-                    <td><center>' . $row['booking_code'] . '</center></td>
-                    <td><center><font size="3px"><b>' . $row['status'] . '</b></font></center></td>
-                    <td><center>' . $row['date_time'] . '</center></td>
-                    <td><center>' . $row['timestamp'] . '</center></td>
-				</tr>';
-                } ?>
-                <tr>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <br>
-
-        <div class="w3-container w3-padding">
-            <h3 class="w3-center">User Transport Booking</h3>
-            <!--   Transport Booking Details     -->
-            <div class="w3-responsive">
-                <table id="user_table" border="1" class=" w3-table-all w3-hoverable">
-                    <thead>
-                    <th>Booking ID</th>
-                    <th>Passenger Name</th>
-                    <th>Contact No</th>
-                    <th>Line Manager</th>
-                    <th>Requestor Name</th>
-                    <th>Department</th>
-                    <th>Journey Start</th>
-                    <th>Journey End</th>
-                    <th>Timestamp</th>
-                    <th></th>
-                    </thead>
-                    <tbody>
-                    <?php
-                    include_once "../admin/db-config.php";
-                    $query = mysqli_query($conn, "select * from `trans_transport`");
-                    while ($row = mysqli_fetch_array($query)) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['passenger_name']; ?></td>
-                            <td><?php echo $row['contact_no']; ?></td>
-                            <td><?php echo $row['line_mgr']; ?></td>
-                            <td><?php echo $row['dept_name']; ?></td>
-                            <td><?php echo $row['journey_start']; ?></td>
-                            <td><?php echo $row['journey_end']; ?></td>
-                            <td><?php echo $row['timestamp']; ?></td>
-                            <td><?php echo $row['description']; ?></td>
-                            <td>
-                                <center>
-                                    <a href="delete_booking.php?id=<?php echo $row['id']; ?>">
-                                        <button class="w3-btn w3-red" onclick="del_msg()">Delete</button>
-                                    </a>
-                                </center>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="w3-container w3-padding w3-responsive">
+    <div class="w3-container w3-responsive">
         &nbsp; <h3 class="w3-center">User Transport Booking - Approval</h3>
-        <table class="data-table" class=" w3-table-all w3-hoverable">
+        <table class="data-table" border="1"  class=" w3-table-all w3-hoverable">
             <thead>
             <tr>
                 <th>Booking ID</th>
@@ -401,95 +303,40 @@ if (!isLoggedIn()) {
     </div>
     </tbody>
     </table>
-    <br>
-    <br>
-
-    <!--   user feedbacks     -->
-    <div class="w3-container w3-padding">
-        <h3>User Feedbacks</h3>
-
-        <div class="w3-responsive">
-            <table id="example" class=" w3-table-all w3-hoverable">
-                <thead>
-                <tr>
-                    <th>
-                        <center>Feedback ID</center>
-                    </th>
-                    <th>
-                        <center>User name</center>
-                    </th>
-                    <th>
-                        <center>User Email</center>
-                    </th>
-                    <th>
-                        <center>Contact No.</center>
-                    </th>
-                    <th>
-                        <center>Feedback</center>
-                    </th>
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <?php
-
-                $sql = "SELECT * FROM corp_feedback";
-
-                $query = mysqli_query($conn, $sql);
-
-                while ($row = mysqli_fetch_array($query)) {
-                    ?>
-
-                    <?php
-                    echo '<tr>
-                    <td><center>' . $row['feedback_id'] . '</center></td>
-                    <td><center>' . $row['feedback_name'] . '</center></td>
-                    <td><center><font size="3px"><b>' . $row['feedback_email'] . '</b></font></center></td>
-                    <td><center>' . $row['feedback_phone'] . '</center></td>
-                    <td><center>' . $row['feedback_message'] . '</center></td>
-				</tr>';
-                } ?>
-                <tr>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <br>
-    <br>
-    <script>
-        function save_update(id) {
-            var approval_status = '#approval_status' + id;
-            var approval_status = $(approval_status).val();
-
-            $.ajax({
-                url: 'update_booking.php',
-                dataType: 'text',
-                type: 'post',
-                contentType: 'application/x-www-form-urlencoded',
-                data: {
-                    'id': id,
-                    'approval_status': approval_status
-                },
-                success: function (data) {
-                    alert(data);
-                    location.reload();
-                },
-                error: function (jqXhr, textStatus, errorThrown) {
-                    console.log(errorThrown);
-                }
-            });
-
-        }
-    </script>
-
-
     <!-- Footer -->
-    <footer class="footer w3-container w3-teal">
-        <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>
-    </footer>
+<!--    <footer class="footer w3-container w3-teal">-->
+<!--        <h5>All Rights Reserved Corp Travel Designed by Arul Sabareesh</h5>-->
+<!--    </footer>-->
     <!-- End page content -->
 
 </div>
+<script>
+    function save_update(id) {
+        var approval_status = '#approval_status' + id;
+        var approval_status = $(approval_status).val();
+
+        $.ajax({
+            url: 'update_booking.php',
+            dataType: 'text',
+            type: 'post',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                'id': id,
+                'approval_status': approval_status
+            },
+            success: function (data) {
+                alert(data);
+                location.reload();
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+
+    }
+</script>
+
+
 <script>
     // Get the Sidebar
     var mySidebar = document.getElementById("mySidebar");

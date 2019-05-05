@@ -79,7 +79,7 @@ function login()
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "You are now logged in";
 
-                header('location: dashboard/home.php');
+                header('location: dashboard/vendorSummary.php');
             }
         } else {
             array_push($errors, "Wrong username/password combination");

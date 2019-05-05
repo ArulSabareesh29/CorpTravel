@@ -150,10 +150,10 @@ if (!isLoggedIn()) {
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <hr>
-    <h3><?php echo $_SESSION['user']['username']; ?>'s summary Of transport bookings
+    <h3 class="w3-center"><?php echo $_SESSION['user']['username']; ?>'s summary Of transport bookings
         for <?php echo date("d/M/Y") ?></h3>
     <div class="w3-container">
-        <!--   user feedbacks     -->
+        <!--   User feedbacks     -->
         <div class="w3-responsive">
             <table class="data-table">
                 <thead>
@@ -298,26 +298,6 @@ if (!isLoggedIn()) {
     function w3_close() {
         mySidebar.style.display = "none";
         overlayBg.style.display = "none";
-    }
-
-    //        <!-- Js code for map -->
-
-    function myMap() {
-        var map = new google.maps.Map(
-            document.getElementById('map'),
-            mapOptions
-        );
-        var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-        var mapCanvas = document.getElementById('map');
-        var mapOptions = {
-            center: myCenter,
-            zoom: 10
-        };
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-        var marker = new google.maps.Marker({
-            position: myCenter
-        });
-        marker.setMap(map);
     }
 </script>
 

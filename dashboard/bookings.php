@@ -7,7 +7,7 @@ if ($result = mysqli_query($conn, $sql)) {
     $rowcount = mysqli_num_rows($result);
 }
 
-$sql_2 = "SELECT * FROM booking ORDER BY booking_id";
+$sql_2 = "SELECT * FROM trans_transport ORDER BY id";
 
 if ($result_booking = mysqli_query($conn, $sql_2)) {
     $rowcount_booking = mysqli_num_rows($result_booking);
@@ -23,6 +23,15 @@ include '../admin/functions.php';
 if (!isLoggedIn()) {
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
+}
+
+$connect = mysqli_connect("localhost", "root", "", "corptravel");
+if (isset($_POST["insert"])) {
+    $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
+    $query = "INSERT INTO tbl_images(name) VALUES ('$file')";
+    if (mysqli_query($connect, $query)) {
+        echo '<script>alert("Image Inserted into Database")</script>';
+    }
 }
 
 ?>
@@ -135,7 +144,7 @@ if (!isLoggedIn()) {
                  style="width:95px">
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Welcome <em><?php echo $_SESSION['user']['username']; ?></em></span><br>
+            <span>Welcome <strong><?php echo $_SESSION['user']['username']; ?></strong></span><br>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -151,6 +160,10 @@ if (!isLoggedIn()) {
         <a href="home.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
         <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book-open fa-fw"></i>  Bookings</a>
         <a href="approvals.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Approvals</a>
+        <a href="../menu/menu.php" target="_blank" class="w3-bar-item w3-button w3-padding"><i
+                    class="fas fa-book fa-fw"></i>  Book Now</a>
+        <a href="../index.php" class="w3-bar-item w3-button w3-padding"><i
+                    class="fas fa-sign-out-alt fa-fw"></i>  Log Out</a>
     </div>
 </nav>
 
@@ -417,54 +430,28 @@ if (!isLoggedIn()) {
             </div>
         </div>
     </div>
-    <h3>User Feedbacks</h3>
     <div class="w3-container">
-        <!--   user feedbacks     -->
-        <div class="w3-responsive">
-            <table id="example" class=" w3-table-all w3-hoverable">
-                <thead>
-                <tr>
-                    <th>
-                        <center>Feedback ID</center>
-                    </th>
-                    <th>
-                        <center>User name</center>
-                    </th>
-                    <th>
-                        <center>User Email</center>
-                    </th>
-                    <th>
-                        <center>Contact No.</center>
-                    </th>
-                    <th>
-                        <center>Feedback</center>
-                    </th>
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <?php
-
-                $sql = "SELECT * FROM corp_feedback";
-
-                $query = mysqli_query($conn, $sql);
-
-                while ($row = mysqli_fetch_array($query)) {
-                    ?>
-
-                    <?php
-                    echo '<tr>
-                    <td><center>' . $row['feedback_id'] . '</center></td>
-                    <td><center>' . $row['feedback_name'] . '</center></td>
-                    <td><center><font size="3px"><b>' . $row['feedback_email'] . '</b></font></center></td>
-                    <td><center>' . $row['feedback_phone'] . '</center></td>
-                    <td><center>' . $row['feedback_message'] . '</center></td>
-				</tr>';
-                } ?>
-                <tr>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <h3 class="w3-center">Vendor Invoices</h3>
+        <table class="table table-bordered">
+            <?php
+            $query = "SELECT * FROM tbl_images ORDER BY id DESC";
+            $result = mysqli_query($connect, $query);
+            while ($row = mysqli_fetch_array($result)) {
+                echo '  
+                          <tr>  
+                               <td>  
+                               <center>
+                                    <img src="data:image/jpeg;base64,' . base64_encode($row['name']) . '" height="480" width="750" class="img-thumnail" />  
+                                    </center>
+                               </td>  
+                          </tr>  
+                     ';
+            }
+            ?>
+        </table>
+    </div>
+    <div class="w3-center">
+        <button class="w3-button w3-cyan" onclick="print_this();"> Print This Page</button>
     </div>
     <br>
     <br>
@@ -557,6 +544,16 @@ if (!isLoggedIn()) {
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZf_J6NsuyTn4abnSc7mw6yJbE_y_f39s&callback=myMap">
 </script>
+
+<!--js for print screen-->
+<script>
+    function print_this() {
+        window.print();
+    }
+</script>
+
+
+<!--js code ends here-->
 
 </body>
 

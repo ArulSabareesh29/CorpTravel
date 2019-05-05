@@ -11,7 +11,7 @@ if (!$conn) {
 }
 
 if (isset($_POST['submit_btn'])) {
-    $query = "INSERT INTO flight_booking (passenger_name, from_airport, to_Airport, arrivalDate, departureDate, flight_Class) VALUES
+    $query = "INSERT INTO `flight_booking`(`passenger_name`, `from_airport`, `to_Airport`, `arrivalDate`, `departureDate`, `flight_Class`)  VALUES
 		(
         '" . $_POST["passenger_name"] . "',
         '" . $_POST["from_airport"] . "',
@@ -32,6 +32,8 @@ if (isset($_POST['submit_btn'])) {
         $error_message = "Problem is occurred. Please Try Again!";
     }
 }
+
+
 include_once 'flightBooking_connection.php';
 
 include '../../admin/functions.php';
@@ -40,6 +42,7 @@ if (!isLoggedIn()) {
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +70,7 @@ if (!isLoggedIn()) {
         <div class="container">
             <div class="nav-wrapper">
                 <a href="#home" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
-                <a href="../../menu/menu.php" data-target="mobile-nav" class="sidenav-trigger">
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down">
@@ -75,7 +78,7 @@ if (!isLoggedIn()) {
                         <a href="#welcome">Hi, <?php echo $_SESSION['user']['username']; ?></a>
                     </li>
                     <li id="myaccount">
-                        <a href="../../dashboard/bookings_summary.php">My Bookings</a>
+                        <a href="viewflight.php">My Bookings</a>
                     </li>
                     <li>
                         <a href="../../index.php">Logout</a>
@@ -85,6 +88,25 @@ if (!isLoggedIn()) {
         </div>
     </nav>
 </div>
+
+<!-- Side Navigation: Mobile View -->
+<ul class="sidenav" id="mobile-nav">
+    <li>
+        <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+    </li>
+    <li>
+        <a href="viewflight.php">My Bookings</a>
+    </li>
+    <li id="menu">
+        <a href="../../menu/menu.php">Menu</a>
+    </li>
+    <li id="contact">
+        <a href="#contact">Feedback</a>
+    </li>
+    <li>
+        <a href="../../index.php">Sign Out</a>
+    </li>
+</ul>
 
 <!-- Showcase -->
 <section class="showcase">
@@ -141,7 +163,7 @@ if (!isLoggedIn()) {
                             id="from"
                             type="text"
                             name="from_airport"
-                            class="validate"
+                            class="validate" required
                     />
                     <label for="From">From</label>
                     <div id="fromList"></div>
@@ -188,6 +210,8 @@ if (!isLoggedIn()) {
         </form>
 </section>
 
+
+
 <!-- Section : Footer -->
 <footer class="section cyan darken-1 white-text center">
     <p class="flow-text">Corp Travel 2019 &copy; 2019</p>
@@ -203,33 +227,44 @@ if (!isLoggedIn()) {
 <!-- Compiled and minified JavaScript -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../../js/materialize.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZf_J6NsuyTn4abnSc7mw6yJbE_y_f39s&callback=myMap">
-</script>
+
 <script>
-    function myMap() {
-        var map = new google.maps.Map(
-            document.getElementById('map'),
-            mapOptions
-        );
-        var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-        var mapCanvas = document.getElementById('map');
-        var mapOptions = {
-            center: myCenter,
-            zoom: 10
-        };
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-        var marker = new google.maps.Marker({
-            position: myCenter
-        });
-        marker.setMap(map);
-    }
+
+    // Side Nav
+    const sideNav = document.querySelector('.sidenav');
+    M.Sidenav.init(sideNav, {});
+
+    $('.datepicker').datepicker({
+        disableWeekends: true,
+        yearRange: 1
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+    });
+
+    // Or with jQuery
 
     $(document).ready(function () {
         $('select').formSelect();
     });
-</script>
-<script>
 
+    // Autocomplete
+    const ac = document.querySelector('.autocomplete');
+    M.Autocomplete.init(ac, {
+        data: {
+            India: null,
+            'Cancun Mexico': null,
+            Bangalore: null,
+            'Nuwer Eliya': null,
+            Colombo: null,
+            BIA: null,
+            Agarapathana: null
+        }
+    });
+
+
+    //Ajax
     $(document).ready(function () {
         $('#from').keyup(function () {
             let fromQuery = $(this).val();
@@ -285,10 +320,10 @@ if (!isLoggedIn()) {
             let to = $("#to").val();
             let pullDDate = $("#departureDate").val();
             let reorderD = pullDDate.split("-");
-            let departureDate = reorderD[2] + '/' + reorderD[1] + '/' + reorderD[0];
+            // let departureDate = reorderD[2] + '/' + reorderD[1] + '/' + reorderD[0];
             let pullADate = $("#arrivalDate").val();
             let reorderA = pullADate.split("-");
-            let arrivalDate = reorderA[2] + '/' + reorderA[1] + '/' + reorderA[0];
+            // let arrivalDate = reorderA[2] + '/' + reorderA[1] + '/' + reorderA[0];
             /*let arrivalDate = $("#arrivalDate").val();*/
             let classVal = $("#class").val();
 
@@ -315,40 +350,6 @@ if (!isLoggedIn()) {
 
         });
 
-    });
-</script>
-<script>
-    // Side Nav
-    const sideNav = document.querySelector('.sidenav');
-    M.Sidenav.init(sideNav, {});
-
-    $('.datepicker').datepicker({
-        disableWeekends: true,
-        yearRange: 1
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, options);
-    });
-
-    // Or with jQuery
-
-    $(document).ready(function () {
-        $('select').formSelect();
-    });
-
-    // Autocomplete
-    const ac = document.querySelector('.autocomplete');
-    M.Autocomplete.init(ac, {
-        data: {
-            India: null,
-            'Cancun Mexico': null,
-            Bangalore: null,
-            'Nuwer Eliya': null,
-            Colombo: null,
-            BIA: null,
-            Agarapathana: null
-        }
     });
 </script>
 

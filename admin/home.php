@@ -69,7 +69,7 @@ if (!isAdmin()) {
 
         /*Css code for apply buttons*/
         .button {
-            background-color: # #00acc1;
+            background-color: #00acc1;
             border: none;
             color: white;
             padding: 9px 15px;
@@ -90,84 +90,85 @@ if (!isAdmin()) {
 <div class="content">
     <!-- notification message -->
     <?php if (isset($_SESSION['success'])): ?>
-        <div class="error success">
-            <h3>
-                <?php
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
-                ?>
-            </h3>
-        </div>
-    <?php endif ?>
-
-    <?php if (isset($_SESSION['user'])): ?>
-        <strong><?php echo $_SESSION['user']['username']; ?></strong>
-
-        <small>
-            <i style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
-            <br>
-            <button type=""><a href="view.php" target="_blank">View Users</a></button>
-            <button><a href="home.php?logout='1'" style="color: red;">logout</a></button>
-        </small>
-
-    <?php endif ?>
-    <!-- logged in user information -->
-    <div class="profile_info">
-        <!--        <img src="../images/admin_profile.png"  >-->
-
-
+    <div class="error success">
+        <h3>
+            <?php
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+        </h3>
     </div>
-    <div class="container">
-        <center><h4>Following Users Have Booked in the System</h4></center>
-        <table id="user_table" border="1">
-            <thead>
-            <th>
-                <center>Booking ID</center>
-            </th>
-            <th>
-                <center>Booking Type</center>
-            </th>
-            <th>
-                <center>Booking Code</center>
-            </th>
-            <th>
-                <center>Status</center>
-            </th>
-            <th>
-                <center>Timestamp</center>
-            </th>
-            </thead>
-            <tbody>
-    </div>
-    <?php
-    include 'db-config.php';
-    $query = mysqli_query($conn, "select * from `booking`");
-    while ($row = mysqli_fetch_array($query)) {
-        ?>
-        <tr>
-            <td>
-                <center><?php echo $row['booking_id']; ?></center>
-            </td>
-            <td>
-                <center><?php echo $row['booking_type']; ?></center>
-            </td>
-            <td>
-                <center><?php echo $row['booking_code']; ?></center>
-            </td>
-            <td>
-                <center><strong><?php echo $row['status']; ?></strong></center>
-            </td>
-            <td>
-                <center><?php echo $row['timestamp']; ?></center>
-            </td>
+</div>
+<?php endif ?>
 
-        </tr>
-        <?php
-    }
+<?php if (isset($_SESSION['user'])): ?>
+    <strong><?php echo $_SESSION['user']['username']; ?></strong>
+
+    <small>
+        <i style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
+        <br>
+        <button type=""><a href="view.php" target="_blank">View Users</a></button>
+        <button><a href="home.php?logout='1'" style="color: red;">logout</a></button>
+    </small>
+
+<?php endif ?>
+<!-- logged in user information -->
+<div class="profile_info">
+    <!--        <img src="../images/admin_profile.png"  >-->
+
+
+</div>
+<div class="container">
+    <center><h4>Following Users Have Booked in the System</h4></center>
+    <table id="user_table" border="1">
+        <thead>
+        <th>
+            <center>Booking ID</center>
+        </th>
+        <th>
+            <center>Booking Type</center>
+        </th>
+        <th>
+            <center>Booking Code</center>
+        </th>
+        <th>
+            <center>Status</center>
+        </th>
+        <th>
+            <center>Timestamp</center>
+        </th>
+        </thead>
+        <tbody>
+</div>
+<?php
+include 'db-config.php';
+$query = mysqli_query($conn, "select * from `booking`");
+while ($row = mysqli_fetch_array($query)) {
     ?>
-    </tbody>
-    </table>
+    <tr>
+        <td>
+            <center><?php echo $row['booking_id']; ?></center>
+        </td>
+        <td>
+            <center><?php echo $row['booking_type']; ?></center>
+        </td>
+        <td>
+            <center><?php echo $row['booking_code']; ?></center>
+        </td>
+        <td>
+            <center><strong><?php echo $row['status']; ?></strong></center>
+        </td>
+        <td>
+            <center><?php echo $row['timestamp']; ?></center>
+        </td>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </tr>
+    <?php
+}
+?>
+</tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

@@ -1,1 +1,169 @@
 <?php
+include '../../admin/functions.php';
+
+if (!isLoggedIn()) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="../../css/materialize.min.css"/>
+    <link rel="stylesheet" href="css/hotel.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="img/LogoV1.png">
+    <title>Corp Travel - Hotel</title>
+    <link rel="shortcut icon" href="../images/title.png">
+    <title>Corp Travel</title>
+    <style>
+        #user_table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #user_table td,
+        #user_table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #user_table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #user_table tr:hover {
+            background-color: #ddd;
+        }
+
+        #user_table th {
+            padding-top: 25px;
+            padding-bottom: 20px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /*Css code for apply buttons*/
+        .button {
+            background-color: #f44336;
+            border: none;
+            color: white;
+            padding: 9px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="cyan darken-1">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="../../menu/menu.php" class="brand-logo"><img src="img/title_corp_travel.png" width="40%"></a>
+            <a href="../../menu/menu.php" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+
+                </li>
+                <li>
+                    <a href="../../index.php">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+<!-- Side Navigation: Mobile View -->
+<ul class="sidenav" id="mobile-nav">
+    <li>
+        <a href="#home">Hi, <?php echo $_SESSION['user']['username']; ?></a>
+    </li>
+    <li>
+        <a href="#account">My Bookings</a>
+    </li>
+    <li id="contact">
+        <a href="#contact">Feedback</a>
+    </li>
+    <li>
+        <a href="../../index.php">Sign Out</a>
+    </li>
+</ul>
+<div>
+    <center>
+        <h4> <?php echo $_SESSION['user']['username']; ?>'s Flight Bookings</h4>
+    </center>
+    <table id="user_table" border="1">
+        <thead>
+        <th>Booking Id</th>
+        <th>Passenger Name</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Arrival Date</th>
+        <th>Departure Date</th>
+        <th>Flight Class</th>
+        </thead>
+        <tbody id="myTable">
+        <?php
+        include '../../admin/db-config.php';
+        $query = mysqli_query($conn, "select * from `flight_booking` where `passenger_name` = '" . $_SESSION['user']['username'] . "' ");
+        while ($row = mysqli_fetch_array($query)) {
+            ?>
+            <tr>
+                <td><?php echo $row['booking_id']; ?></td>
+                <td><?php echo $row['passenger_name']; ?></td>
+                <td><?php echo $row['from_airport']; ?></td>
+                <td><?php echo $row['to_Airport']; ?></td>
+                <td><?php echo $row['arrivalDate']; ?></td>
+                <td><?php echo $row['departureDate']; ?></td>
+                <td><?php echo $row['flight_Class']; ?></td>
+            </tr>
+            <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <br>
+    <a href="flight.php">
+        <button class="button" type="button">Close</button>
+    </a>
+    <a href="#">
+        <button class="button" type="button" onclick="print_out();">Print</button>
+    </a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<!--  js code for print-->
+<script>
+    function print_out() {
+        window.print();
+    }
+</script>
+</body>
+
+</html>

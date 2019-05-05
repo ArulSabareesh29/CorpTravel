@@ -7,7 +7,7 @@ if ($result = mysqli_query($conn, $sql)) {
     $rowcount = mysqli_num_rows($result);
 }
 
-$sql_2 = "SELECT * FROM booking ORDER BY booking_id";
+$sql_2 = "SELECT * FROM trans_transport ORDER BY id";
 
 if ($result_booking = mysqli_query($conn, $sql_2)) {
     $rowcount_booking = mysqli_num_rows($result_booking);
@@ -81,6 +81,10 @@ include("Calculate.php");
         <a href="bookings.php" class="w3-bar-item w3-button w3-padding"><i
                     class="fa fa-book-open fa-fw"></i> Bookings</a>
         <a href="approvals.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Approvals</a>
+        <a href="../menu/menu.php" target="_blank" class="w3-bar-item w3-button w3-padding"><i
+                    class="fa fa-book fa-fw"></i>  Book Now</a>
+        <a href="../index.php"  class="w3-bar-item w3-button w3-padding"><i
+                    class="fas fa-sign-out-alt fa-fw"></i>  Log Out</a>
     </div>
 </nav>
 
@@ -141,15 +145,6 @@ include("Calculate.php");
         </div>
     </div>
 
-
-    <!--    <div class="w3-panel">-->
-    <!--        <hr style="border: 1px solid black;">-->
-    <!--        <div class="w3-row-padding" style="margin:0 -16px">-->
-    <!--            <div class="w3-third">-->
-    <!--                <div id="map" style="width:100%;height:200px;"></div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
 
     <!--Pie Chart-->
     <div class="w3-panel">
@@ -223,11 +218,11 @@ include("Calculate.php");
 
         </div>
     </div>
-    <div class="w3-half w3-right-align">
-        <img class="imageR" src="img/Rplot.png" alt="" >
+    <div class="w3-half w3-padding">
+        <img class="imageR" src="img/Rplot.png" alt="" width="88%">
     </div>
     <div class="w3-half w3-right-align">
-        <img src="img/Rplot03.png" alt="">
+        <img src="img/Rplot03.png" alt="" width="88%">
     </div>
 
     <!-- Feedback Comments-->
@@ -236,7 +231,7 @@ include("Calculate.php");
 
         <ul class="w3-ul w3-card-4 w3-white">
             <?php
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM user LIMIT 3";
             //  mysql_select_db;
             $retval = mysqli_query($conn, $sql);
 
@@ -265,31 +260,6 @@ include("Calculate.php");
     </div>
     <hr>
 
-    <!--    <div class="w3-container">-->
-    <!--        <h5>Recent Comments</h5>-->
-    <!--        <div class="w3-row">-->
-    <!--            <div class="w3-col m2 text-center">-->
-    <!--                <img class="w3-circle" src="img/user4.png" style="width:96px;height:96px">-->
-    <!--            </div>-->
-    <!--            <div class="w3-col m10 w3-container">-->
-    <!--                <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>-->
-    <!--                <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing-->
-    <!--                    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!---->
-    <!--        <div class="w3-row">-->
-    <!--            <div class="w3-col m2 text-center">-->
-    <!--                <img class="w3-circle" src="img/user5.png" style="width:96px;height:96px">-->
-    <!--            </div>-->
-    <!--            <div class="w3-col m10 w3-container">-->
-    <!--                <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>-->
-    <!--                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
-
     <div class="w3-container">
         <h5>Recent Comments</h5>
         <?php
@@ -307,7 +277,7 @@ include("Calculate.php");
             <div class="w3-row">
                 <div class="w3-col m2 text-center">
                     <!--                    <img class="w3-circle" src="../Images/Users/F1.png" style="width:96px;height:96px">-->
-                    <img class="w3-circle" src="img/user5.png" style="width:96px;height:96px">
+                    <img class="w3-circle" src="img/user4.png" style="width:96px;height:96px">
                 </div>
                 <div class="w3-col m10 w3-container">
                     <h4><?php echo $row['feedback_name']; ?> <span
@@ -320,7 +290,7 @@ include("Calculate.php");
         }
         ?>
         <div>
-            <a href="Messages.php" class="w3-bar-item w3-button w3-indigo">More Messages <i
+            <a href="feedback.php" class="w3-bar-item w3-button w3-indigo">More Messages <i
                         class="fa fa-arrow-right"></i></a>
         </div>
     </div>
