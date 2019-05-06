@@ -63,7 +63,7 @@ if (!isLoggedIn()) {
     <title>Flight Booking</title>
 </head>
 
-<body>
+<body id="home" class="scrollspy">
 
 <div class="navbar-fixed">
     <nav class="cyan darken-1">
@@ -117,7 +117,7 @@ if (!isLoggedIn()) {
                 Any Type of Flight tickets could be booked here
             </h5>
             <br/><br/>
-            <a href="flightBooking.php" class="btn btn-large light-blue white-text">Get Booking</a>
+            <a href="#flightBooking" class="btn btn-large light-blue white-text">Get Booking</a>
         </div>
     </div>
 </section>
@@ -138,7 +138,7 @@ if (!isLoggedIn()) {
 </section>
 
 <!-- Flight Details Search -->
-<section>
+<section class="scrollspy" id="flightBooking">
     <div class="row">
         <form class="container" method="post" action="<?php $_PHP_SELF ?>">
             <?php
@@ -211,7 +211,6 @@ if (!isLoggedIn()) {
 </section>
 
 
-
 <!-- Section : Footer -->
 <footer class="section cyan darken-1 white-text center">
     <p class="flow-text">Corp Travel 2019 &copy; 2019</p>
@@ -220,15 +219,15 @@ if (!isLoggedIn()) {
 <?php include '../../chat.php' ?>
 
 
-<!-- <section>
-<h1>My First Google Map</h1>
-<div id="map" style="width:50%;height:200px;"></div>
-</section> -->
 <!-- Compiled and minified JavaScript -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../../js/materialize.min.js"></script>
 
 <script>
+
+    //ScrollSpy
+    const ss = document.querySelectorAll('.scrollspy');
+    M.ScrollSpy.init(ss, {});
 
     // Side Nav
     const sideNav = document.querySelector('.sidenav');
